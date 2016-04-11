@@ -115,15 +115,7 @@ namespace DCTree
 			if (parentNodeView != nullptr && childNodeView != nullptr && parentNodeView != childNodeView)
 			{
 				int connectorIdx = parentNodeView->GetConnectorIndex(_draggingConnector);
-
-				if (connectorIdx < parentNodeView->GetNumChildren())
-				{
-					parentNodeView->InsertChild(childNodeView, connectorIdx);
-				}
-				else
-				{
-					parentNodeView->AddChild(childNodeView);
-				}
+				parentNodeView->InsertChild(childNodeView, connectorIdx);
 			}
 
 			_draggingConnector = nullptr;
@@ -172,7 +164,11 @@ namespace DCTree
 	{
 		if (key.isKeyCode(KeyPress::deleteKey) && _selectedNodeView != nullptr && _selectedNodeView->CanBeDeleted())
 		{
+			_selectedNodeView->RemoveParent();
+			_selectedNodeView->RemoveAllChildren();
 			_nodeViews.remove(_nodeViews.indexOf(_selectedNodeView));
+			_selectedNodeView = nullptr;
+			repaint();
 			return true;
 		}
 

@@ -47,11 +47,12 @@ namespace DCTree
 
 		NodeConnector *GetConnector(int index) const;
 		int GetConnectorIndex(NodeConnector *connector) const;
-		void AddChild(NodeView *child);
 		void InsertChild(NodeView *child, int index);
 		void MoveChild(int current, int destination);
 		void RemoveChild(NodeView *child);
 		void RemoveChild(int childIndex);
+		void RemoveAllChildren();
+		void RemoveParent();
 		NodeView *GetChild(int index) const;
 		int GetNumChildren() const;
 		Point<int> GetParentConnectionPosition() const;

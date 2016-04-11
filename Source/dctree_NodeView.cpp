@@ -195,17 +195,9 @@ namespace DCTree
 		return _connectors.indexOf(connector);
 	}
 
-	void NodeView::AddChild(NodeView* child)
-	{
-		InsertChild(child, -1);
-	}
-
 	void NodeView::InsertChild(NodeView* child, int index)
 	{
-		if (_maxChildren < 1)
-		{
-			return;
-		}
+		jassert(_maxChildren > 0);
 
 		if (child->_parent)
 		{
@@ -224,7 +216,7 @@ namespace DCTree
 
 		while (_children.size() >= _maxChildren)
 		{
-			_children.removeLast();
+			RemoveChild(_children.size() - 1);
 		}
 
 		_children.insert(index, child);
@@ -254,19 +246,37 @@ namespace DCTree
 
 	void NodeView::RemoveChild(NodeView* child)
 	{
+		jassert(child != nullptr);
+
 		RemoveChild(_children.indexOf(child));
 	}
 
 	void NodeView::RemoveChild(int childIndex)
 	{
-		if (childIndex >= 0 && childIndex < _children.size())
-		{
-			_children.remove(childIndex);
+		jassert(childIndex > -1 && childIndex < _children.size());
 
-			if (_connectors.size() > 1)
-			{
-				RemoveConnector();
-			}
+		_children[childIndex]->_parent = nullptr;
+		_children.remove(childIndex);
+
+		if (_connectors.size() > 1)
+		{
+			RemoveConnector();
+		}
+	}
+
+	void NodeView::RemoveAllChildren()
+	{
+		while (_children.size() > 0)
+		{
+			RemoveChild(0);
+		}
+	}
+
+	void NodeView::RemoveParent()
+	{
+		if (_parent)
+		{
+			_parent->RemoveChild(this);
 		}
 	}
 
