@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+Project("{1D798601-11E4-4BD5-F547-ABED361A3826}") = "Percolate Editor", "Percolate Editor.vcxproj", "{9F886268-7500-AD4C-AB19-A9A85FB6BF57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F886268-7500-AD4C-AB19-A9A85FB6BF57}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9F886268-7500-AD4C-AB19-A9A85FB6BF57}.Debug|Win32.Build.0 = Debug|Win32
+		{9F886268-7500-AD4C-AB19-A9A85FB6BF57}.Release|Win32.ActiveCfg = Release|Win32
+		{9F886268-7500-AD4C-AB19-A9A85FB6BF57}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

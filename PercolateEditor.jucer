@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="Uaomiu" name="Percolate Editor" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.derelictcomputer.PercolateEditor" includeBinaryInAppConfig="1"
+              jucerVersion="4.2.0" companyName="Derelict Computer" companyWebsite="http://derelict.computer"
+              companyEmail="info@derelict.computer">
+  <MAINGROUP id="GAHYGd" name="Percolate Editor">
+    <GROUP id="{B64824D9-DD71-7F66-7B1F-C8FF3F7A7C9C}" name="Source">
+      <GROUP id="{606721A3-8024-CA8F-6518-5E328669AB4A}" name="DCTreeSerialization">
+        <FILE id="TMtCso" name="dctree_EditableNodeParam.cpp" compile="1" resource="0"
+              file="Source/dctree_EditableNodeParam.cpp"/>
+        <FILE id="cMAZML" name="dctree_EditableNodeParam.h" compile="0" resource="0"
+              file="Source/dctree_EditableNodeParam.h"/>
+      </GROUP>
+      <GROUP id="{2E93404C-20B0-3799-0FB5-AE26A5E41D09}" name="DCTree">
+        <FILE id="kXnpyX" name="dctree_Composite.cpp" compile="1" resource="0"
+              file="Source/dctree_Composite.cpp"/>
+        <FILE id="ZTKn4T" name="dctree_Composite.h" compile="0" resource="0"
+              file="Source/dctree_Composite.h"/>
+        <FILE id="flZbIv" name="dctree_Decorator.cpp" compile="1" resource="0"
+              file="Source/dctree_Decorator.cpp"/>
+        <FILE id="jFdidq" name="dctree_Decorator.h" compile="0" resource="0"
+              file="Source/dctree_Decorator.h"/>
+        <FILE id="lsHHNJ" name="dctree_FiniteRepeater.cpp" compile="1" resource="0"
+              file="Source/dctree_FiniteRepeater.cpp"/>
+        <FILE id="P65JbW" name="dctree_FiniteRepeater.h" compile="0" resource="0"
+              file="Source/dctree_FiniteRepeater.h"/>
+        <FILE id="Ow369x" name="dctree_Leaf.cpp" compile="1" resource="0" file="Source/dctree_Leaf.cpp"/>
+        <FILE id="xOpmnp" name="dctree_Leaf.h" compile="0" resource="0" file="Source/dctree_Leaf.h"/>
+        <FILE id="rQyAlh" name="dctree_Node.cpp" compile="1" resource="0" file="Source/dctree_Node.cpp"/>
+        <FILE id="VpTKZo" name="dctree_Node.h" compile="0" resource="0" file="Source/dctree_Node.h"/>
+        <FILE id="RsHbWC" name="dctree_Repeater.cpp" compile="1" resource="0"
+              file="Source/dctree_Repeater.cpp"/>
+        <FILE id="NVwcJv" name="dctree_Repeater.h" compile="0" resource="0"
+              file="Source/dctree_Repeater.h"/>
+      </GROUP>
+      <GROUP id="{2D3ED483-6C9F-DDBE-620E-9F317720A1D8}" name="DCTreeEditor">
+        <FILE id="OxeVKv" name="dctree_Editor.cpp" compile="1" resource="0"
+              file="Source/dctree_Editor.cpp"/>
+        <FILE id="JqzSsM" name="dctree_Editor.h" compile="0" resource="0" file="Source/dctree_Editor.h"/>
+        <FILE id="eP6JGQ" name="dctree_NodeConnector.cpp" compile="1" resource="0"
+              file="Source/dctree_NodeConnector.cpp"/>
+        <FILE id="KETktc" name="dctree_NodeConnector.h" compile="0" resource="0"
+              file="Source/dctree_NodeConnector.h"/>
+        <FILE id="FEoFdZ" name="dctree_NodeParamSlider.cpp" compile="1" resource="0"
+              file="Source/dctree_NodeParamSlider.cpp"/>
+        <FILE id="a8Gszt" name="dctree_NodeParamSlider.h" compile="0" resource="0"
+              file="Source/dctree_NodeParamSlider.h"/>
+        <FILE id="VXljQd" name="dctree_NodeParamTextBox.cpp" compile="1" resource="0"
+              file="Source/dctree_NodeParamTextBox.cpp"/>
+        <FILE id="mrdPaO" name="dctree_NodeParamTextBox.h" compile="0" resource="0"
+              file="Source/dctree_NodeParamTextBox.h"/>
+        <FILE id="wbKL2B" name="dctree_NodeView.cpp" compile="1" resource="0"
+              file="Source/dctree_NodeView.cpp"/>
+        <FILE id="y2PUSv" name="dctree_NodeView.h" compile="0" resource="0"
+              file="Source/dctree_NodeView.h"/>
+      </GROUP>
+      <FILE id="jVYFsy" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="AVYYnr" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="T9pF5l" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="1" optimisation="1" targetName="PercolateEditor"/>
+        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="0" optimisation="3" targetName="PercolateEditor"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../JUCE_4.2/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2015 targetFolder="Builds/VisualStudio2015">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="PercolateEditor"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="PercolateEditor"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../JUCE_4.2/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
