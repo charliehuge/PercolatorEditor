@@ -17,9 +17,11 @@
 namespace DCTree
 {
 	//==============================================================================
-	Editor::Editor() : _draggingConnector(nullptr)
+	Editor::Editor() : _draggingConnector(nullptr), _selectedNodeView(nullptr)
 	{
 		setBounds(0, 0, DCTREEEDITOR_WIDTH, DCTREEEDITOR_HEIGHT);
+		addNodeView(ConcreteNodeType::ROOT, 100, 10);
+		setWantsKeyboardFocus(true);
 	}
 
 	Editor::~Editor()
@@ -54,7 +56,7 @@ namespace DCTree
 				{
 					auto connectorPos = getLocalPoint(connector, connector->getWirePosition());
 					auto childPos = child->GetParentConnectionPosition();
-					g.drawLine(connectorPos.x, connectorPos.y, childPos.x, childPos.y);
+					g.drawLine(connectorPos.x, connectorPos.y, childPos.x, childPos.y, 2);
 				}
 			}
 		}
@@ -66,48 +68,44 @@ namespace DCTree
 
 	void Editor::mouseDown(const MouseEvent& e)
 	{
-		if (e.originalComponent == this)
-		{
-			if (e.mods.isLeftButtonDown())
-				addNodeView(ConcreteNodeType::PlayNote, e.position.x, e.position.y);
-			else if (e.mods.isRightButtonDown())
-				addNodeView(ConcreteNodeType::Sequence, e.position.x, e.position.y);
-			else if (e.mods.isMiddleButtonDown())
-				addNodeView(ConcreteNodeType::FiniteRepeater, e.position.x, e.position.y);
-		}
+		_mousePosition = getLocalPoint(e.originalComponent, e.getPosition());
 
 		// check if we clicked a connector
-		else if (e.mods.isLeftButtonDown())
+		if (e.mods.isLeftButtonDown())
 		{
 			_draggingConnector = dynamic_cast<NodeConnector *>(e.originalComponent);
-
-			if (_draggingConnector)
-			{
-				_mousePosition = getLocalPoint(e.originalComponent, e.position);
-			}
 		}
 	}
 
 	void Editor::mouseDrag(const MouseEvent& e)
 	{
+		_mousePosition = getLocalPoint(e.originalComponent, e.getPosition());
+
 		if (_draggingConnector)
 		{
-			_mousePosition = getLocalPoint(e.originalComponent, e.position);
+			for (int i = 0; i < _nodeViews.size(); ++i)
+			{
+				_nodeViews[i]->Highlight(_nodeViews[i]->getBoundsInParent().contains(_mousePosition));
+			}
+
 			repaint();
 		}
 	}
 
 	void Editor::mouseUp(const MouseEvent& e)
 	{
+		_mousePosition = getLocalPoint(e.originalComponent, e.getPosition());
+
 		if (_draggingConnector)
 		{
 			auto parentNodeView = dynamic_cast<NodeView *>(_draggingConnector->getParentComponent());
 			NodeView *childNodeView = nullptr;
-			auto mp = getLocalPoint(e.originalComponent, e.getPosition());
 
 			for (int i = 0; i < _nodeViews.size(); ++i)
 			{
-				if (_nodeViews[i]->getBoundsInParent().contains(mp))
+				_nodeViews[i]->Highlight(false);
+
+				if (_nodeViews[i]->getBoundsInParent().contains(_mousePosition))
 				{
 					childNodeView = _nodeViews[i];
 					break;
@@ -131,6 +129,54 @@ namespace DCTree
 			_draggingConnector = nullptr;
 			repaint();
 		}
+		else if (e.mouseWasClicked() && e.mods.isRightButtonDown())
+		{
+			PopupMenu p;
+			p.addSectionHeader("Add Node");
+			int count = static_cast<int>(ConcreteNodeType::COUNT);
+			for (int i = 0; i < count; ++i)
+			{
+				p.addItem(i + 1, GetNodeDisplayName(static_cast<ConcreteNodeType>(i)));
+			}
+
+			const int result = p.show();
+
+			if (result == 0)
+			{
+				DBG("Cancelled menu");
+			}
+			else
+			{
+				addNodeView(static_cast<ConcreteNodeType>(result - 1), _mousePosition.x, _mousePosition.y);
+			}
+		}
+		else if (e.mouseWasClicked() && e.mods.isLeftButtonDown())
+		{
+			_selectedNodeView = nullptr;
+
+			for (int i = 0; i < _nodeViews.size(); ++i)
+			{
+				if (_nodeViews[i]->getBoundsInParent().contains(_mousePosition))
+				{
+					_selectedNodeView = _nodeViews[i];
+				}
+
+				_nodeViews[i]->Highlight(_nodeViews[i] == _selectedNodeView);
+			}
+
+			repaint();
+		}
+	}
+
+	bool Editor::keyPressed(const KeyPress& key)
+	{
+		if (key.isKeyCode(KeyPress::deleteKey) && _selectedNodeView != nullptr && _selectedNodeView->CanBeDeleted())
+		{
+			_nodeViews.remove(_nodeViews.indexOf(_selectedNodeView));
+			return true;
+		}
+
+		return false;
 	}
 
 	void Editor::addNodeView(ConcreteNodeType nodeType, int x, int y)

@@ -29,6 +29,8 @@ namespace DCTree
 	{
 		switch (nodeType)
 		{
+		case ConcreteNodeType::ROOT:
+			return "Root";
 		case ConcreteNodeType::Repeater:
 			return "Repeater";
 		case ConcreteNodeType::FiniteRepeater:
@@ -46,11 +48,17 @@ namespace DCTree
 		}
 	}
 
-	NodeView::NodeView(ConcreteNodeType nodeType, int x, int y) : _propertyPanel(GetNodeDisplayName(nodeType)), _nodeType(nodeType), _parent(nullptr)
+	NodeView::NodeView(ConcreteNodeType nodeType, int x, int y) : _propertyPanel(GetNodeDisplayName(nodeType)), _nodeType(nodeType), _parent(nullptr), _isHighlighted(false)
 	{
+		jassert(nodeType != ConcreteNodeType::COUNT);
+
+		_canBeDeleted = nodeType != ConcreteNodeType::ROOT;
+
 		switch (nodeType)
 		{
-		case ConcreteNodeType::UNDEFINED: break;
+		case ConcreteNodeType::ROOT:
+			_maxChildren = 1;
+			break;
 		case ConcreteNodeType::Repeater:
 			_maxChildren = NODE_DECORATOR_MAX_CHILDREN;
 			break;
@@ -141,7 +149,7 @@ namespace DCTree
 		g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), 4);
 
 		g.setColour(Colours::darkgrey);
-		g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), 4, 1);
+		g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), 4, _isHighlighted ? 3 : 1);
 
 		g.setColour(Colours::darkgrey);
 		g.setFont(18);
@@ -281,6 +289,16 @@ namespace DCTree
 	{
 		auto boundsInParent = getBoundsInParent();
 		return Point<int>(boundsInParent.getX() + boundsInParent.getWidth() / 2, boundsInParent.getY());
+	}
+
+	void NodeView::Highlight(bool highlight)
+	{
+		_isHighlighted = highlight;
+	}
+
+	bool NodeView::CanBeDeleted() const
+	{
+		return _canBeDeleted;
 	}
 
 	void NodeView::AddConnector()

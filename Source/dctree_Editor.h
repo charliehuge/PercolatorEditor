@@ -30,13 +30,15 @@ namespace DCTree
 		void mouseDown(const MouseEvent &e) override;
 		void mouseDrag(const MouseEvent &e) override;
 		void mouseUp(const MouseEvent &e) override;
+		bool keyPressed(const KeyPress &key) override;
 
 	private:
 		void addNodeView(ConcreteNodeType nodeType, int x, int y);
 
 		OwnedArray<NodeView> _nodeViews;
 		NodeConnector *_draggingConnector;
-		Point<float> _mousePosition;
+		Point<int> _mousePosition;
+		NodeView *_selectedNodeView;
 
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Editor)
 	};

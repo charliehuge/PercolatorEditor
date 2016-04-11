@@ -22,13 +22,14 @@ namespace DCTree
 {
 	enum class ConcreteNodeType
 	{
-		UNDEFINED = 0,
+		ROOT = -1,
 		Repeater,
 		FiniteRepeater,
 		Sequence,
 		Selector,
 		PlayNote,
-		StopNote
+		StopNote,
+		COUNT
 	};
 
 	String GetNodeDisplayName(ConcreteNodeType nodeType);
@@ -54,6 +55,8 @@ namespace DCTree
 		NodeView *GetChild(int index) const;
 		int GetNumChildren() const;
 		Point<int> GetParentConnectionPosition() const;
+		void Highlight(bool highlight);
+		bool CanBeDeleted() const;
 
 	private:
 		void AddConnector();
@@ -70,6 +73,8 @@ namespace DCTree
 		Array<NodeView *> _children;
 		NodeView *_parent;
 		int _maxChildren;
+		bool _isHighlighted;
+		bool _canBeDeleted;
 
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NodeView)
 	};
