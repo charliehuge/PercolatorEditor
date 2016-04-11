@@ -25,7 +25,7 @@ namespace DCTree
 	void NodeConnector::paint(Graphics& g)
 	{
 		g.setColour(Colours::darkgrey);
-		g.fillEllipse(0, 0, getWidth(), getHeight());
+		g.fillEllipse(0.0f, 0.0f, static_cast<float>(getWidth()), static_cast<float>(getHeight()));
 	}
 
 	void NodeConnector::resized()

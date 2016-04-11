@@ -38,7 +38,7 @@ namespace DCTree
 		{
 			g.setColour(Colours::darkgrey);
 			auto pos = getLocalPoint(_draggingConnector, _draggingConnector->getWirePosition());
-			g.drawLine(pos.x, pos.y, _mousePosition.x, _mousePosition.y, 2);
+			g.drawLine(static_cast<float>(pos.x), static_cast<float>(pos.y), static_cast<float>(_mousePosition.x), static_cast<float>(_mousePosition.y), 2);
 		}
 
 		g.setColour(Colours::grey);
@@ -56,7 +56,7 @@ namespace DCTree
 				{
 					auto connectorPos = getLocalPoint(connector, connector->getWirePosition());
 					auto childPos = child->GetParentConnectionPosition();
-					g.drawLine(connectorPos.x, connectorPos.y, childPos.x, childPos.y, 2);
+					g.drawLine(static_cast<float>(connectorPos.x), static_cast<float>(connectorPos.y), static_cast<float>(childPos.x), static_cast<float>(childPos.y), 2);
 				}
 			}
 		}

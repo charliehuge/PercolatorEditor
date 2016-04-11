@@ -146,10 +146,10 @@ namespace DCTree
 	void NodeView::paint(Graphics& g)
 	{
 		g.setColour(Colours::lightgrey);
-		g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), 4);
+		g.fillRoundedRectangle(0.0f, 0.0f, static_cast<float>(getWidth()), static_cast<float>(getHeight()), 4);
 
 		g.setColour(Colours::darkgrey);
-		g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), 4, _isHighlighted ? 3 : 1);
+		g.drawRoundedRectangle(0.0f, 0.0f, static_cast<float>(getWidth()), static_cast<float>(getHeight()), 4.0f, _isHighlighted ? 3.0f : 1.0f);
 
 		g.setColour(Colours::darkgrey);
 		g.setFont(18);
@@ -330,7 +330,7 @@ namespace DCTree
 	{
 		for (int i = 0; i < _connectors.size(); ++i)
 		{
-			_connectors[i]->setTopLeftPosition(NODEVIEW_PADDING + i * NODECONNECTOR_SIZE * 1.2, getHeight() - _connectors[i]->getHeight() / 2);
+			_connectors[i]->setTopLeftPosition(NODEVIEW_PADDING + static_cast<int>(i * NODECONNECTOR_SIZE * 1.2f), getHeight() - _connectors[i]->getHeight() / 2);
 		}
 	}
 }
