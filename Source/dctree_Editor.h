@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_NodeView.h"
+#include "json.hpp"
 
 //==============================================================================
 /*
@@ -32,8 +33,12 @@ namespace DCTree
 		void mouseUp(const MouseEvent &e) override;
 		bool keyPressed(const KeyPress &key) override;
 
+		json ToJson() const;
+
 	private:
+		void FromJson(json jsonObject);
 		void addNodeView(ConcreteNodeType nodeType, int x, int y);
+		void addNodeView(json jsonObject);
 
 		OwnedArray<NodeView> _nodeViews;
 		NodeConnector *_draggingConnector;

@@ -10,6 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_Editor.h"
+#include "dctree_Serialization.h"
 
 #define DCTREEEDITOR_WIDTH 4000
 #define DCTREEEDITOR_HEIGHT 2000
@@ -172,12 +173,80 @@ namespace DCTree
 			return true;
 		}
 
+		if (key.isKeyCode(KeyPress::escapeKey))
+		{
+			json js = ToJson();
+			DBG(js.dump(4));
+			FromJson(js);
+			json js2 = ToJson();
+			jassert(js.dump().compare(js2.dump()) == 0);
+		}
+
 		return false;
+	}
+
+	json Editor::ToJson() const
+	{
+		json js;
+
+		for (int i = 0; i < _nodeViews.size(); ++i)
+		{
+			js += _nodeViews[i]->ToJson();
+		}
+
+		// add the children
+		for (int i = 0; i < _nodeViews.size(); ++i)
+		{
+			auto nv = _nodeViews[i];
+			json children;
+
+			for (int j = 0; j < nv->GetNumChildren(); ++j)
+			{
+				children += _nodeViews.indexOf(nv->GetChild(j));
+			}
+
+			js[i][DCT_JSON_CHILDREN] = children;
+		}
+
+		return js;
+	}
+
+	void Editor::FromJson(json jsonObject)
+	{
+		_nodeViews.clear();
+		_draggingConnector = nullptr;
+		_selectedNodeView = nullptr;
+
+		for (size_t i = 0; i < jsonObject.size(); ++i)
+		{
+			addNodeView(jsonObject[i]);
+		}
+
+		for (int i = 0; i < _nodeViews.size(); ++i)
+		{
+			auto nv = _nodeViews[i];
+			auto nJs = jsonObject[i];
+			auto childJs = nJs[DCT_JSON_CHILDREN];
+
+			for (size_t j = 0; j < childJs.size(); ++j)
+			{
+				jassert(childJs[j].is_number_integer());
+				nv->InsertChild(_nodeViews[childJs[j].get<int>()], j);
+			}
+		}
 	}
 
 	void Editor::addNodeView(ConcreteNodeType nodeType, int x, int y)
 	{
 		auto nv = new NodeView(nodeType, x, y);
+		_nodeViews.add(nv);
+		addAndMakeVisible(nv);
+		nv->addMouseListener(this, true);
+	}
+
+	void Editor::addNodeView(json jsonObject)
+	{
+		auto nv = new NodeView(jsonObject);
 		_nodeViews.add(nv);
 		addAndMakeVisible(nv);
 		nv->addMouseListener(this, true);

@@ -6,11 +6,18 @@
               companyEmail="info@derelict.computer">
   <MAINGROUP id="GAHYGd" name="Percolate Editor">
     <GROUP id="{B64824D9-DD71-7F66-7B1F-C8FF3F7A7C9C}" name="Source">
+      <GROUP id="{D36FFE57-240C-EBA8-F0CD-792BD1C62606}" name="ExternalLibraries">
+        <FILE id="Yov4n5" name="json.hpp" compile="0" resource="0" file="Source/json.hpp"/>
+      </GROUP>
       <GROUP id="{606721A3-8024-CA8F-6518-5E328669AB4A}" name="DCTreeSerialization">
         <FILE id="TMtCso" name="dctree_EditableNodeParam.cpp" compile="1" resource="0"
               file="Source/dctree_EditableNodeParam.cpp"/>
         <FILE id="cMAZML" name="dctree_EditableNodeParam.h" compile="0" resource="0"
               file="Source/dctree_EditableNodeParam.h"/>
+        <FILE id="VHghFP" name="dctree_Serialization.cpp" compile="1" resource="0"
+              file="Source/dctree_Serialization.cpp"/>
+        <FILE id="efagy3" name="dctree_Serialization.h" compile="0" resource="0"
+              file="Source/dctree_Serialization.h"/>
       </GROUP>
       <GROUP id="{2E93404C-20B0-3799-0FB5-AE26A5E41D09}" name="DCTree">
         <FILE id="kXnpyX" name="dctree_Composite.cpp" compile="1" resource="0"

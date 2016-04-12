@@ -8,6 +8,9 @@
     <Filter Include="Percolate Editor\Source">
       <UniqueIdentifier>{832C2F8E-0490-D30E-54E6-6DDF4D483FAF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Percolate Editor\Source\ExternalLibraries">
+      <UniqueIdentifier>{96691B87-34B7-9739-828D-51AC5B42408A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Percolate Editor\Source\DCTreeSerialization">
       <UniqueIdentifier>{73E425BB-DC8E-062E-EA65-7294670C60D5}</UniqueIdentifier>
     </Filter>
@@ -317,6 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\dctree_EditableNodeParam.cpp">
+      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_Serialization.cpp">
       <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Composite.cpp">
@@ -1620,7 +1626,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\json.hpp">
+      <Filter>Percolate Editor\Source\ExternalLibraries</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\dctree_EditableNodeParam.h">
+      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_Serialization.h">
       <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Composite.h">

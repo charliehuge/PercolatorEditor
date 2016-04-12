@@ -14,29 +14,20 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_EditableNodeParam.h"
 #include "dctree_NodeConnector.h"
+#include "json.hpp"
+#include "dctree_Serialization.h"
+
+using json = nlohmann::json;
 
 //==============================================================================
 /*
 */
 namespace DCTree
 {
-	enum class ConcreteNodeType
-	{
-		ROOT = -1,
-		Repeater,
-		FiniteRepeater,
-		Sequence,
-		Selector,
-		PlayNote,
-		StopNote,
-		COUNT
-	};
-
-	String GetNodeDisplayName(ConcreteNodeType nodeType);
-
 	class NodeView : public Component
 	{
 	public:
+		explicit NodeView(json jsonObject);
 		NodeView(ConcreteNodeType nodeType, int x, int y);
 		~NodeView();
 
@@ -59,7 +50,10 @@ namespace DCTree
 		void Highlight(bool highlight);
 		bool CanBeDeleted() const;
 
+		json ToJson() const;
+
 	private:
+		void Init(int x, int y);
 		void AddConnector();
 		void RemoveConnector();
 		void RefreshConnectorPositions() const;

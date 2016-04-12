@@ -44,8 +44,27 @@ namespace DCTree
 
 		if (floatParam)
 		{
-			floatParam->Value = static_cast<float>(newValue);
+			floatParam->Value = newValue;
 			return;
 		}
+	}
+
+	double NodeParamSlider::getValue() const
+	{
+		auto intParam = dynamic_cast<EditableNodeParamInt *>(_param);
+
+		if (intParam)
+		{
+			return static_cast<double>(intParam->Value);
+		}
+
+		auto floatParam = dynamic_cast<EditableNodeParamFloat *>(_param);
+
+		if (floatParam)
+		{
+			return floatParam->Value;
+		}
+
+		return 0;
 	}
 }

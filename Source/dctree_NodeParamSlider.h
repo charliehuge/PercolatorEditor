@@ -27,6 +27,7 @@ namespace DCTree
 		~NodeParamSlider();
 
 		void setValue(double newValue) override;
+		double getValue() const override;
 		
 	private:
 		EditableNodeParam *_param;

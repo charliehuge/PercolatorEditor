@@ -25,36 +25,81 @@
 //==============================================================================
 namespace DCTree
 {
-	String GetNodeDisplayName(ConcreteNodeType nodeType)
+	NodeView::NodeView(json jsonObject): _parent(nullptr), _isHighlighted(false)
 	{
-		switch (nodeType)
+		// get the node type
 		{
-		case ConcreteNodeType::ROOT:
-			return "Root";
-		case ConcreteNodeType::Repeater:
-			return "Repeater";
-		case ConcreteNodeType::FiniteRepeater:
-			return "Finite Repeater";
-		case ConcreteNodeType::Sequence:
-			return "Sequence";
-		case ConcreteNodeType::Selector:
-			return "Selector";
-		case ConcreteNodeType::PlayNote:
-			return "Play Note";
-		case ConcreteNodeType::StopNote:
-			return "Stop Note";
-		default:
-			return "<undefined>";
+			auto it = jsonObject.find(DCT_JSON_NODETYPE);
+			jassert(it != jsonObject.end());
+			const auto typeName = it.value().get<std::string>();
+			_nodeType = GetNodeTypeFromName(typeName);
+			jassert(_nodeType != ConcreteNodeType::COUNT && _nodeType != ConcreteNodeType::INVALID);
 		}
+
+		int x, y;
+		{
+			auto it = jsonObject.find(DCT_JSON_EDITORPOS);
+			jassert(it != jsonObject.end());
+			auto pos = it.value();
+			x = pos[0].get<int>();
+			y = pos[1].get<int>();
+		}
+
+		Init(x, y);
+
+		// assign the parameter values
+		auto paramsIt = jsonObject.find(DCT_JSON_PARAMS);
+		jassert(paramsIt != jsonObject.end());
+		auto paramsJ = paramsIt.value();
+
+		for (int i = 0; i < _nodeParams.size(); ++i)
+		{
+			auto pIt = paramsJ.find(_nodeParams[i]->Name);
+			jassert(pIt != paramsJ.end());
+
+			{
+				auto intP = dynamic_cast<EditableNodeParamInt *>(_nodeParams[i]);
+
+				if (intP)
+				{
+					intP->Value = pIt.value().get<int>();
+					continue;
+				}
+			}
+			{
+				auto floatP = dynamic_cast<EditableNodeParamFloat *>(_nodeParams[i]);
+
+				if (floatP)
+				{
+					floatP->Value = pIt.value().get<double>();
+					continue;
+				}
+			}
+			{
+				auto stringP = dynamic_cast<EditableNodeParamString *>(_nodeParams[i]);
+
+				if (stringP)
+				{
+					stringP->Value = pIt.value().get<std::string>();
+					continue;
+				}
+			}
+		}
+
+		_propertyPanel.refreshAll();
 	}
 
-	NodeView::NodeView(ConcreteNodeType nodeType, int x, int y) : _propertyPanel(GetNodeDisplayName(nodeType)), _nodeType(nodeType), _parent(nullptr), _isHighlighted(false)
+	NodeView::NodeView(ConcreteNodeType nodeType, int x, int y) : _nodeType(nodeType), _parent(nullptr), _isHighlighted(false)
 	{
 		jassert(nodeType != ConcreteNodeType::COUNT);
+		Init(x, y);
+	}
 
-		_canBeDeleted = nodeType != ConcreteNodeType::ROOT;
+	void NodeView::Init(int x, int y)
+	{
+		_canBeDeleted = _nodeType != ConcreteNodeType::ROOT;
 
-		switch (nodeType)
+		switch (_nodeType)
 		{
 		case ConcreteNodeType::ROOT:
 			_maxChildren = 1;
@@ -63,7 +108,7 @@ namespace DCTree
 			_maxChildren = NODE_DECORATOR_MAX_CHILDREN;
 			break;
 		case ConcreteNodeType::FiniteRepeater:
-			_maxChildren = 1;
+			_maxChildren = NODE_DECORATOR_MAX_CHILDREN;
 			{
 				auto repeatParam = new EditableNodeParamInt();
 				repeatParam->Name = "NumRepeats";
@@ -106,7 +151,7 @@ namespace DCTree
 			break;
 		default: break;
 		}
-		
+
 		Array<PropertyComponent *> pcs;
 
 		for (int i = 0; i < _nodeParams.size(); ++i)
@@ -309,6 +354,46 @@ namespace DCTree
 	bool NodeView::CanBeDeleted() const
 	{
 		return _canBeDeleted;
+	}
+
+	json NodeView::ToJson() const
+	{
+		json j;
+		j[DCT_JSON_NODETYPE] = GetNodeTypeName(_nodeType);
+		j[DCT_JSON_EDITORPOS] = { getPosition().getX(), getPosition().getY() };		
+		j[DCT_JSON_PARAMS] = {};
+		for (int i = 0; i < _nodeParams.size(); ++i)
+		{
+			{
+				auto intParam = dynamic_cast<EditableNodeParamInt *>(_nodeParams[i]);
+
+				if (intParam)
+				{
+					j[DCT_JSON_PARAMS][intParam->Name] = intParam->Value;
+					continue;
+				}
+			}
+
+			{
+				auto floatParam = dynamic_cast<EditableNodeParamFloat *>(_nodeParams[i]);
+
+				if (floatParam)
+				{
+					j[DCT_JSON_PARAMS][floatParam->Name] = floatParam->Value;
+					continue;
+				}
+			}
+			{
+				auto stringParam = dynamic_cast<EditableNodeParamString *>(_nodeParams[i]);
+
+				if (stringParam)
+				{
+					j[DCT_JSON_PARAMS][stringParam->Name] = stringParam->Value;
+					continue;
+				}
+			}
+		}
+		return j;
 	}
 
 	void NodeView::AddConnector()

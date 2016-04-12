@@ -11,7 +11,7 @@
 #ifndef DCTREE_NODEPARAM_H_INCLUDED
 #define DCTREE_NODEPARAM_H_INCLUDED
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include <string>
 
 namespace DCTree
 {
@@ -22,7 +22,7 @@ namespace DCTree
 
 		virtual ~EditableNodeParam();
 
-		String Name;
+		std::string Name;
 	};
 
 	class EditableNodeParamString : public EditableNodeParam
@@ -32,7 +32,7 @@ namespace DCTree
 
 		~EditableNodeParamString();
 
-		String Value;
+		std::string Value;
 	};
 
 	class EditableNodeParamInt : public EditableNodeParam
@@ -55,10 +55,10 @@ namespace DCTree
 
 		~EditableNodeParamFloat();
 
-		float Value;
+		double Value;
 		bool HasRange;
-		float Min;
-		float Max;
+		double Min;
+		double Max;
 	};
 }
 
