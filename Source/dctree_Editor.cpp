@@ -176,10 +176,25 @@ namespace DCTree
 		if (key.isKeyCode(KeyPress::escapeKey))
 		{
 			json js = ToJson();
-			DBG(js.dump(4));
-			FromJson(js);
-			json js2 = ToJson();
-			jassert(js.dump().compare(js2.dump()) == 0);
+			FileChooser fc("Save to", File::getSpecialLocation(File::userDesktopDirectory), "*.dctree");
+
+			if (fc.browseForFileToSave(true))
+			{
+				File dctFile(fc.getResult());
+				dctFile.replaceWithText(js.dump(4));
+			}
+		}
+
+		if (key.isKeyCode(KeyPress::homeKey))
+		{
+			FileChooser fc("Load from", File::getSpecialLocation(File::userDesktopDirectory), "*.dctree");
+
+			if (fc.browseForFileToOpen())
+			{
+				File dctFile(fc.getResult());
+				FromJson(json::parse(dctFile.loadFileAsString().toStdString()));
+				repaint();
+			}
 		}
 
 		return false;
