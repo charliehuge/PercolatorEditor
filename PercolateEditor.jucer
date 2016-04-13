@@ -45,6 +45,14 @@
         <FILE id="OxeVKv" name="dctree_Editor.cpp" compile="1" resource="0"
               file="Source/dctree_Editor.cpp"/>
         <FILE id="JqzSsM" name="dctree_Editor.h" compile="0" resource="0" file="Source/dctree_Editor.h"/>
+        <FILE id="SfqJrz" name="dctree_EditorContainer.cpp" compile="1" resource="0"
+              file="Source/dctree_EditorContainer.cpp"/>
+        <FILE id="iKgBZK" name="dctree_EditorContainer.h" compile="0" resource="0"
+              file="Source/dctree_EditorContainer.h"/>
+        <FILE id="hFhv4r" name="dctree_MainEditor.cpp" compile="1" resource="0"
+              file="Source/dctree_MainEditor.cpp"/>
+        <FILE id="DIwtUN" name="dctree_MainEditor.h" compile="0" resource="0"
+              file="Source/dctree_MainEditor.h"/>
         <FILE id="eP6JGQ" name="dctree_NodeConnector.cpp" compile="1" resource="0"
               file="Source/dctree_NodeConnector.cpp"/>
         <FILE id="KETktc" name="dctree_NodeConnector.h" compile="0" resource="0"

@@ -10,7 +10,7 @@
 #define MAINCOMPONENT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "dctree_Editor.h"
+#include "dctree_MainEditor.h"
 
 
 //==============================================================================
@@ -29,8 +29,7 @@ public:
     void resized() override;
 
 private:
-	Viewport _viewport;
-	DCTree::Editor _treeEditor;
+	DCTree::MainEditor _mainEditor;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)

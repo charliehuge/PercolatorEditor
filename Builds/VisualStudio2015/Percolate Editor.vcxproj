@@ -137,6 +137,8 @@
     <ClCompile Include="..\..\Source\dctree_Node.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Repeater.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Editor.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_EditorContainer.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_MainEditor.cpp"/>
     <ClCompile Include="..\..\Source\dctree_NodeConnector.cpp"/>
     <ClCompile Include="..\..\Source\dctree_NodeParamSlider.cpp"/>
     <ClCompile Include="..\..\Source\dctree_NodeParamTextBox.cpp"/>
@@ -1314,6 +1316,8 @@
     <ClInclude Include="..\..\Source\dctree_Node.h"/>
     <ClInclude Include="..\..\Source\dctree_Repeater.h"/>
     <ClInclude Include="..\..\Source\dctree_Editor.h"/>
+    <ClInclude Include="..\..\Source\dctree_EditorContainer.h"/>
+    <ClInclude Include="..\..\Source\dctree_MainEditor.h"/>
     <ClInclude Include="..\..\Source\dctree_NodeConnector.h"/>
     <ClInclude Include="..\..\Source\dctree_NodeParamSlider.h"/>
     <ClInclude Include="..\..\Source\dctree_NodeParamTextBox.h"/>

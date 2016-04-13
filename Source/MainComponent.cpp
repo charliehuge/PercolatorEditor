@@ -12,10 +12,8 @@
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
-    setSize (600, 400);
-
-	_viewport.setViewedComponent(&_treeEditor);
-	addAndMakeVisible(_viewport);
+    setSize (800, 600);
+	addAndMakeVisible(_mainEditor);
 }
 
 MainContentComponent::~MainContentComponent()
@@ -29,5 +27,5 @@ void MainContentComponent::paint (Graphics& g)
 
 void MainContentComponent::resized()
 {
-	_viewport.setBounds(getBounds());
+	_mainEditor.setBounds(getBounds());
 }

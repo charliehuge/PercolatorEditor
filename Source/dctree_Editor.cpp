@@ -173,29 +173,6 @@ namespace DCTree
 			return true;
 		}
 		
-		if (key.isKeyCode(KeyPress::escapeKey))
-		{
-			FileChooser fc("Save to", File::getSpecialLocation(File::userDesktopDirectory), "*.dctree");
-
-			if (fc.browseForFileToSave(true))
-			{
-				File dctFile(fc.getResult());
-				dctFile.replaceWithText(CreateJson(Serialize(), true));
-			}
-		}
-
-		if (key.isKeyCode(KeyPress::homeKey))
-		{
-			FileChooser fc("Load from", File::getSpecialLocation(File::userDesktopDirectory), "*.dctree");
-
-			if (fc.browseForFileToOpen())
-			{
-				File dctFile(fc.getResult());
-				Deserialize(CreateSerializableNodes(dctFile.loadFileAsString().toStdString()));
-				repaint();
-			}
-		}
-
 		return false;
 	}
 

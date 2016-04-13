@@ -343,6 +343,12 @@
     <ClCompile Include="..\..\Source\dctree_Editor.cpp">
       <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_EditorContainer.cpp">
+      <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_MainEditor.cpp">
+      <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\dctree_NodeConnector.cpp">
       <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
     </ClCompile>
@@ -1651,6 +1657,12 @@
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Editor.h">
+      <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_EditorContainer.h">
+      <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_MainEditor.h">
       <Filter>Percolate Editor\Source\DCTreeEditor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_NodeConnector.h">
