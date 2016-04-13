@@ -172,16 +172,15 @@ namespace DCTree
 			repaint();
 			return true;
 		}
-
+		
 		if (key.isKeyCode(KeyPress::escapeKey))
 		{
-			json js = ToJson();
 			FileChooser fc("Save to", File::getSpecialLocation(File::userDesktopDirectory), "*.dctree");
 
 			if (fc.browseForFileToSave(true))
 			{
 				File dctFile(fc.getResult());
-				dctFile.replaceWithText(js.dump(4));
+				dctFile.replaceWithText(CreateJson(Serialize(), true));
 			}
 		}
 
@@ -192,7 +191,7 @@ namespace DCTree
 			if (fc.browseForFileToOpen())
 			{
 				File dctFile(fc.getResult());
-				FromJson(json::parse(dctFile.loadFileAsString().toStdString()));
+				Deserialize(CreateSerializableNodes(dctFile.loadFileAsString().toStdString()));
 				repaint();
 			}
 		}
@@ -212,18 +211,17 @@ namespace DCTree
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
 			auto nv = _nodeViews[i];
-			auto children = sNodes[i].ChildIndexes;
 
 			for (int j = 0; j < nv->GetNumChildren(); ++j)
 			{
-				children.push_back(_nodeViews.indexOf(nv->GetChild(j)));
+				sNodes[i].ChildIndexes.push_back(_nodeViews.indexOf(nv->GetChild(j)));
 			}
 		}
 
 		return sNodes;
 	}
 
-	void Editor::Deserialize(std::vector<SerializableNode> sNodes)
+	void Editor::Deserialize(const std::vector<SerializableNode> &sNodes)
 	{
 		_nodeViews.clear();
 		_draggingConnector = nullptr;
@@ -254,7 +252,7 @@ namespace DCTree
 		nv->addMouseListener(this, true);
 	}
 
-	void Editor::addNodeView(SerializableNode sNode)
+	void Editor::addNodeView(const SerializableNode &sNode)
 	{
 		auto nv = new NodeView(sNode);
 		_nodeViews.add(nv);

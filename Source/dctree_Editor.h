@@ -34,11 +34,11 @@ namespace DCTree
 		bool keyPressed(const KeyPress &key) override;
 
 		std::vector<SerializableNode> Serialize() const;
-		void Deserialize(std::vector<SerializableNode> sNodes);
+		void Deserialize(const std::vector<SerializableNode> &sNodes);
 
 	private:
 		void addNodeView(ConcreteNodeType nodeType, int x, int y);
-		void addNodeView(SerializableNode sNode);
+		void addNodeView(const SerializableNode &sNode);
 
 		OwnedArray<NodeView> _nodeViews;
 		NodeConnector *_draggingConnector;

@@ -25,7 +25,7 @@
 //==============================================================================
 namespace DCTree
 {
-	NodeView::NodeView(SerializableNode sNode): _parent(nullptr), _isHighlighted(false)
+	NodeView::NodeView(const SerializableNode &sNode): _parent(nullptr), _isHighlighted(false)
 	{
 		_nodeType = sNode.NodeType;
 

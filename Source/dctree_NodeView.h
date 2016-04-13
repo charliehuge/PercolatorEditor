@@ -24,7 +24,7 @@ namespace DCTree
 	class NodeView : public Component
 	{
 	public:
-		explicit NodeView(SerializableNode sNode);
+		explicit NodeView(const SerializableNode &sNode);
 		NodeView(ConcreteNodeType nodeType, int x, int y);
 		~NodeView();
 

@@ -13,15 +13,7 @@
 
 #include <string>
 #include <vector>
-#include "json.hpp"
-#include "dctree_Node.h"
-
-using json = nlohmann::json;
-
-#define DCT_JSON_NODETYPE "node_type"
-#define DCT_JSON_PARAMS "params"
-#define DCT_JSON_CHILDREN "children"
-#define DCT_JSON_EDITORPOS "editor_pos"
+#include "dctree_Include.h"
 
 namespace DCTree
 {
@@ -36,28 +28,6 @@ namespace DCTree
 		StopNote,
 		COUNT,
 		INVALID
-	};
-
-	const std::string NodeTypeNames[] = {
-		"root",
-		"repeater",
-		"finiterepeater",
-		"sequence",
-		"selector",
-		"playnote",
-		"stopnote",
-		"<undefined>"
-	};
-
-	const std::string NodeDisplayNames[] = {
-		"Root",
-		"Repeat",
-		"Repeat X",
-		"Sequence",
-		"Select",
-		"Play Note",
-		"Stop Note",
-		"<undefined>"
 	};
 
 	enum class NodeParamType { Int, Double, String };
@@ -83,19 +53,13 @@ namespace DCTree
 
 	std::string GetNodeTypeName(ConcreteNodeType nodeType);
 
-	ConcreteNodeType GetNodeTypeFromName(std::string name);
+	ConcreteNodeType GetNodeType(std::string name);
 
-	Node *CreateRuntimeTree(json jsonObject);
+	std::vector<SerializableNode> CreateSerializableNodes(const std::string &jsonString);
 
-	SerializableNode CreateSerializableNodeFromJson(json jsonObject);
-
-	Node *CreateRuntimeTree(int index, std::vector<SerializableNode> sNodes);
-
-	Node *CreateRuntimeNode(SerializableNode sNode, std::vector<Node *> children);
-
-	json CreateJsonForTree(std::vector<SerializableNode> sNodes);
-
-	json CreateJsonFromSerializableNode(SerializableNode sNode);
+	std::string CreateJson(const std::vector<SerializableNode> &sNodes, bool prettyPrint = false);
+	
+	Node *CreateRuntimeTree(const std::string &jsonString);
 }
 
 #endif  // DCTREE_SERIALIZATION_H_INCLUDED
