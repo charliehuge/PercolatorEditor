@@ -9,3 +9,18 @@
 */
 
 #include "dctree_Decorator.h"
+
+namespace DCTree
+{
+	Decorator::Decorator(Node *child) : _child(child)
+	{
+	}
+
+	Decorator::~Decorator()
+	{
+		if (_child)
+		{
+			delete _child;
+		}
+	}
+}

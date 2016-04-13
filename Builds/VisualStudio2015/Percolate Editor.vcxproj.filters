@@ -334,9 +334,6 @@
     <ClCompile Include="..\..\Source\dctree_FiniteRepeater.cpp">
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_Leaf.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Node.cpp">
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClCompile>
@@ -1644,7 +1641,7 @@
     <ClInclude Include="..\..\Source\dctree_FiniteRepeater.h">
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_Leaf.h">
+    <ClInclude Include="..\..\Source\dctree_Include.h">
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Node.h">

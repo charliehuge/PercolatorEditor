@@ -12,7 +12,11 @@
 #define DCTREE_SERIALIZATION_H_INCLUDED
 
 #include <string>
+#include <vector>
 #include "json.hpp"
+#include "dctree_Node.h"
+
+using json = nlohmann::json;
 
 #define DCT_JSON_NODETYPE "node_type"
 #define DCT_JSON_PARAMS "params"
@@ -56,11 +60,42 @@ namespace DCTree
 		"<undefined>"
 	};
 
+	enum class NodeParamType { Int, Double, String };
+
+	struct SerializableNodeParam
+	{
+		std::string Name;
+		int IntValue;
+		double DoubleValue;
+		std::string StringValue;
+		NodeParamType Type;
+	};
+
+	struct SerializableNode
+	{
+		ConcreteNodeType NodeType;
+		std::vector<int> ChildIndexes;
+		std::vector<SerializableNodeParam> Params;
+		int x, y;
+	};
+
 	std::string GetNodeDisplayName(ConcreteNodeType nodeType);
 
 	std::string GetNodeTypeName(ConcreteNodeType nodeType);
 
 	ConcreteNodeType GetNodeTypeFromName(std::string name);
+
+	Node *CreateRuntimeTree(json jsonObject);
+
+	SerializableNode CreateSerializableNodeFromJson(json jsonObject);
+
+	Node *CreateRuntimeTree(int index, std::vector<SerializableNode> sNodes);
+
+	Node *CreateRuntimeNode(SerializableNode sNode, std::vector<Node *> children);
+
+	json CreateJsonForTree(std::vector<SerializableNode> sNodes);
+
+	json CreateJsonFromSerializableNode(SerializableNode sNode);
 }
 
 #endif  // DCTREE_SERIALIZATION_H_INCLUDED

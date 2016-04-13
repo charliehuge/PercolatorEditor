@@ -134,7 +134,6 @@
     <ClCompile Include="..\..\Source\dctree_Composite.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Decorator.cpp"/>
     <ClCompile Include="..\..\Source\dctree_FiniteRepeater.cpp"/>
-    <ClCompile Include="..\..\Source\dctree_Leaf.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Node.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Repeater.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Editor.cpp"/>
@@ -1311,7 +1310,7 @@
     <ClInclude Include="..\..\Source\dctree_Composite.h"/>
     <ClInclude Include="..\..\Source\dctree_Decorator.h"/>
     <ClInclude Include="..\..\Source\dctree_FiniteRepeater.h"/>
-    <ClInclude Include="..\..\Source\dctree_Leaf.h"/>
+    <ClInclude Include="..\..\Source\dctree_Include.h"/>
     <ClInclude Include="..\..\Source\dctree_Node.h"/>
     <ClInclude Include="..\..\Source\dctree_Repeater.h"/>
     <ClInclude Include="..\..\Source\dctree_Editor.h"/>

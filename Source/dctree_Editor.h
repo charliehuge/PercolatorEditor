@@ -13,7 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_NodeView.h"
-#include "json.hpp"
+#include "dctree_Serialization.h"
 
 //==============================================================================
 /*
@@ -33,12 +33,12 @@ namespace DCTree
 		void mouseUp(const MouseEvent &e) override;
 		bool keyPressed(const KeyPress &key) override;
 
-		json ToJson() const;
+		std::vector<SerializableNode> Serialize() const;
+		void Deserialize(std::vector<SerializableNode> sNodes);
 
 	private:
-		void FromJson(json jsonObject);
 		void addNodeView(ConcreteNodeType nodeType, int x, int y);
-		void addNodeView(json jsonObject);
+		void addNodeView(SerializableNode sNode);
 
 		OwnedArray<NodeView> _nodeViews;
 		NodeConnector *_draggingConnector;

@@ -200,53 +200,48 @@ namespace DCTree
 		return false;
 	}
 
-	json Editor::ToJson() const
+	std::vector<SerializableNode> Editor::Serialize() const
 	{
-		json js;
+		std::vector<SerializableNode> sNodes;
 
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
-			js += _nodeViews[i]->ToJson();
+			sNodes.push_back(_nodeViews[i]->Serialize());
 		}
 
-		// add the children
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
 			auto nv = _nodeViews[i];
-			json children;
+			auto children = sNodes[i].ChildIndexes;
 
 			for (int j = 0; j < nv->GetNumChildren(); ++j)
 			{
-				children += _nodeViews.indexOf(nv->GetChild(j));
+				children.push_back(_nodeViews.indexOf(nv->GetChild(j)));
 			}
-
-			js[i][DCT_JSON_CHILDREN] = children;
 		}
 
-		return js;
+		return sNodes;
 	}
 
-	void Editor::FromJson(json jsonObject)
+	void Editor::Deserialize(std::vector<SerializableNode> sNodes)
 	{
 		_nodeViews.clear();
 		_draggingConnector = nullptr;
 		_selectedNodeView = nullptr;
 
-		for (size_t i = 0; i < jsonObject.size(); ++i)
+		for (size_t i = 0; i < sNodes.size(); ++i)
 		{
-			addNodeView(jsonObject[i]);
+			addNodeView(sNodes[i]);
 		}
 
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
 			auto nv = _nodeViews[i];
-			auto nJs = jsonObject[i];
-			auto childJs = nJs[DCT_JSON_CHILDREN];
+			auto cis = sNodes[i].ChildIndexes;
 
-			for (size_t j = 0; j < childJs.size(); ++j)
+			for (size_t j = 0; j < cis.size(); ++j)
 			{
-				jassert(childJs[j].is_number_integer());
-				nv->InsertChild(_nodeViews[childJs[j].get<int>()], j);
+				nv->InsertChild(_nodeViews[cis[j]], j);
 			}
 		}
 	}
@@ -259,9 +254,9 @@ namespace DCTree
 		nv->addMouseListener(this, true);
 	}
 
-	void Editor::addNodeView(json jsonObject)
+	void Editor::addNodeView(SerializableNode sNode)
 	{
-		auto nv = new NodeView(jsonObject);
+		auto nv = new NodeView(sNode);
 		_nodeViews.add(nv);
 		addAndMakeVisible(nv);
 		nv->addMouseListener(this, true);

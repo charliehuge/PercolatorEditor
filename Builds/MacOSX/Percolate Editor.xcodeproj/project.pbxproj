@@ -26,7 +26,6 @@
 		49F2EE85AE2967B050D2DE2B = {isa = PBXBuildFile; fileRef = 9A77A850086449BD2167FFE5; };
 		CFC6E52619D6C90162D77F50 = {isa = PBXBuildFile; fileRef = 33685B1D9EF754139C309A54; };
 		7D2669C37FC022C5E9690330 = {isa = PBXBuildFile; fileRef = 6482ACC952964D96D8328B14; };
-		ACB2A59D0FA5F5FFC7F35F13 = {isa = PBXBuildFile; fileRef = A660AFB8E698799723E6CD27; };
 		16F1A2B4830DE86E7A6390D4 = {isa = PBXBuildFile; fileRef = 410483820F24D1A5875B4AA7; };
 		ACFD1556E680EE0ECFE53A70 = {isa = PBXBuildFile; fileRef = 2E34D3979363AE897DBF4F72; };
 		794C5DBE01100889F862A8DD = {isa = PBXBuildFile; fileRef = 7FEF7AF4048FE34D76E3898C; };
@@ -656,7 +655,6 @@
 		A622E661EF3B93AA77E21B3B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_ContainerDeletePolicy.h"; path = "../../JuceLibraryCode/modules/juce_core/memory/juce_ContainerDeletePolicy.h"; sourceTree = "SOURCE_ROOT"; };
 		A6400B45B6F034AEEAC05C38 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_android_FileChooser.cpp"; path = "../../JuceLibraryCode/modules/juce_gui_basics/native/juce_android_FileChooser.cpp"; sourceTree = "SOURCE_ROOT"; };
 		A65DD550699E341C502609EE = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_DeletedAtShutdown.cpp"; path = "../../JuceLibraryCode/modules/juce_events/messages/juce_DeletedAtShutdown.cpp"; sourceTree = "SOURCE_ROOT"; };
-		A660AFB8E698799723E6CD27 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "dctree_Leaf.cpp"; path = "../../Source/dctree_Leaf.cpp"; sourceTree = "SOURCE_ROOT"; };
 		A672DE0A9D303FDD37112AA6 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A699C8CA2892CACC026C52D4 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_RuntimePermissions.cpp"; path = "../../JuceLibraryCode/modules/juce_core/misc/juce_RuntimePermissions.cpp"; sourceTree = "SOURCE_ROOT"; };
 		A6AA79B45650B99318B16A94 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_MPESynthesiserBase.cpp"; path = "../../JuceLibraryCode/modules/juce_audio_basics/mpe/juce_MPESynthesiserBase.cpp"; sourceTree = "SOURCE_ROOT"; };
@@ -756,7 +754,6 @@
 		C0FD1992CFDDB86466B1E3F9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_osx_ObjCHelpers.h"; path = "../../JuceLibraryCode/modules/juce_core/native/juce_osx_ObjCHelpers.h"; sourceTree = "SOURCE_ROOT"; };
 		C182DE69521B11C453F10AD6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_Memory.h"; path = "../../JuceLibraryCode/modules/juce_core/memory/juce_Memory.h"; sourceTree = "SOURCE_ROOT"; };
 		C1BC7F000428CC996CC0B5E2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_MathsFunctions.h"; path = "../../JuceLibraryCode/modules/juce_core/maths/juce_MathsFunctions.h"; sourceTree = "SOURCE_ROOT"; };
-		C1EF96CBF5FD9E3C2FB9CEC0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dctree_Leaf.h"; path = "../../Source/dctree_Leaf.h"; sourceTree = "SOURCE_ROOT"; };
 		C1F9F49925A71FBF39764C87 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_Uuid.cpp"; path = "../../JuceLibraryCode/modules/juce_core/misc/juce_Uuid.cpp"; sourceTree = "SOURCE_ROOT"; };
 		C216C1B305710BB8CD14E22D = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_CoreAudioFormat.cpp"; path = "../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_CoreAudioFormat.cpp"; sourceTree = "SOURCE_ROOT"; };
 		C21798D0610191F1C552FE78 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_WindowsMediaAudioFormat.cpp"; path = "../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_WindowsMediaAudioFormat.cpp"; sourceTree = "SOURCE_ROOT"; };
@@ -940,6 +937,7 @@
 		F38E92B826DD6BB3C512C75F = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_Value.cpp"; path = "../../JuceLibraryCode/modules/juce_data_structures/values/juce_Value.cpp"; sourceTree = "SOURCE_ROOT"; };
 		F4B29C2AA4C4260BEFFF4398 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_NSViewComponent.h"; path = "../../JuceLibraryCode/modules/juce_gui_extra/embedding/juce_NSViewComponent.h"; sourceTree = "SOURCE_ROOT"; };
 		F4C499BA3226756E351C05FC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_MemoryMappedFile.h"; path = "../../JuceLibraryCode/modules/juce_core/files/juce_MemoryMappedFile.h"; sourceTree = "SOURCE_ROOT"; };
+		F4D086B95372E97345988DD6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dctree_Include.h"; path = "../../Source/dctree_Include.h"; sourceTree = "SOURCE_ROOT"; };
 		F52B0FAE15E91A373803D6DD = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_MouseInputSource.cpp"; path = "../../JuceLibraryCode/modules/juce_gui_basics/mouse/juce_MouseInputSource.cpp"; sourceTree = "SOURCE_ROOT"; };
 		F551E7978544F3875B421586 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_MessageListener.h"; path = "../../JuceLibraryCode/modules/juce_events/messages/juce_MessageListener.h"; sourceTree = "SOURCE_ROOT"; };
 		F5CA7CE540609B2397C6B473 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_VST3PluginFormat.cpp"; path = "../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VST3PluginFormat.cpp"; sourceTree = "SOURCE_ROOT"; };
@@ -1000,8 +998,7 @@
 					9DFAD8744FB32563A9F68A33,
 					6482ACC952964D96D8328B14,
 					65EE6DF7E00DEA270A9D564F,
-					A660AFB8E698799723E6CD27,
-					C1EF96CBF5FD9E3C2FB9CEC0,
+					F4D086B95372E97345988DD6,
 					410483820F24D1A5875B4AA7,
 					2AF90AD3F5C31E508CCF8A8F,
 					2E34D3979363AE897DBF4F72,
@@ -2230,7 +2227,6 @@
 					49F2EE85AE2967B050D2DE2B,
 					CFC6E52619D6C90162D77F50,
 					7D2669C37FC022C5E9690330,
-					ACB2A59D0FA5F5FFC7F35F13,
 					16F1A2B4830DE86E7A6390D4,
 					ACFD1556E680EE0ECFE53A70,
 					794C5DBE01100889F862A8DD,

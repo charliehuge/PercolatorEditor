@@ -14,10 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_EditableNodeParam.h"
 #include "dctree_NodeConnector.h"
-#include "json.hpp"
 #include "dctree_Serialization.h"
-
-using json = nlohmann::json;
 
 //==============================================================================
 /*
@@ -27,7 +24,7 @@ namespace DCTree
 	class NodeView : public Component
 	{
 	public:
-		explicit NodeView(json jsonObject);
+		explicit NodeView(SerializableNode sNode);
 		NodeView(ConcreteNodeType nodeType, int x, int y);
 		~NodeView();
 
@@ -50,7 +47,7 @@ namespace DCTree
 		void Highlight(bool highlight);
 		bool CanBeDeleted() const;
 
-		json ToJson() const;
+		SerializableNode Serialize() const;
 
 	private:
 		void Init(int x, int y);

@@ -9,3 +9,16 @@
 */
 
 #include "dctree_Repeater.h"
+
+namespace DCTree
+{
+	Repeater::Repeater(Node* child) : Decorator(child)
+	{
+	}
+
+	Result Repeater::OnTick(double tickTime)
+	{
+		_child->Tick(tickTime);
+		return Result::Running;
+	}
+}

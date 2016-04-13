@@ -11,8 +11,22 @@
 #ifndef DCTREE_FINITEREPEATER_H_INCLUDED
 #define DCTREE_FINITEREPEATER_H_INCLUDED
 
+#include "dctree_Decorator.h"
 
+namespace DCTree
+{
+	class FiniteRepeater : public Decorator
+	{
+	public:
+		explicit FiniteRepeater(Node *child, int numRepeats);
 
+	protected:
+		Result OnStart() override;
+		Result OnTick(double tickTime) override;
 
+		int _numRepeats;
+		int _repeatCount;
+	};
+}
 
 #endif  // DCTREE_FINITEREPEATER_H_INCLUDED

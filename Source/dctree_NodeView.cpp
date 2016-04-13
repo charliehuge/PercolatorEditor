@@ -25,63 +25,35 @@
 //==============================================================================
 namespace DCTree
 {
-	NodeView::NodeView(json jsonObject): _parent(nullptr), _isHighlighted(false)
+	NodeView::NodeView(SerializableNode sNode): _parent(nullptr), _isHighlighted(false)
 	{
-		// get the node type
+		_nodeType = sNode.NodeType;
+
+		Init(sNode.x, sNode.y);
+
+		for (size_t i = 0; i < sNode.Params.size(); ++i)
 		{
-			auto it = jsonObject.find(DCT_JSON_NODETYPE);
-			jassert(it != jsonObject.end());
-			const auto typeName = it.value().get<std::string>();
-			_nodeType = GetNodeTypeFromName(typeName);
-			jassert(_nodeType != ConcreteNodeType::COUNT && _nodeType != ConcreteNodeType::INVALID);
-		}
+			auto sParam = sNode.Params[i];
 
-		int x, y;
-		{
-			auto it = jsonObject.find(DCT_JSON_EDITORPOS);
-			jassert(it != jsonObject.end());
-			auto pos = it.value();
-			x = pos[0].get<int>();
-			y = pos[1].get<int>();
-		}
-
-		Init(x, y);
-
-		// assign the parameter values
-		auto paramsIt = jsonObject.find(DCT_JSON_PARAMS);
-		jassert(paramsIt != jsonObject.end());
-		auto paramsJ = paramsIt.value();
-
-		for (int i = 0; i < _nodeParams.size(); ++i)
-		{
-			auto pIt = paramsJ.find(_nodeParams[i]->Name);
-			jassert(pIt != paramsJ.end());
-
+			for (int j = 0; j < _nodeParams.size(); ++j)
 			{
-				auto intP = dynamic_cast<EditableNodeParamInt *>(_nodeParams[i]);
+				auto nParam = _nodeParams[j];
 
-				if (intP)
+				if (nParam->Name.compare(sParam.Name) == 0)
 				{
-					intP->Value = pIt.value().get<int>();
-					continue;
-				}
-			}
-			{
-				auto floatP = dynamic_cast<EditableNodeParamFloat *>(_nodeParams[i]);
-
-				if (floatP)
-				{
-					floatP->Value = pIt.value().get<double>();
-					continue;
-				}
-			}
-			{
-				auto stringP = dynamic_cast<EditableNodeParamString *>(_nodeParams[i]);
-
-				if (stringP)
-				{
-					stringP->Value = pIt.value().get<std::string>();
-					continue;
+					switch (sParam.Type)
+					{
+					case NodeParamType::Int: 
+						dynamic_cast<EditableNodeParamInt *>(nParam)->Value = sParam.IntValue;
+						break;
+					case NodeParamType::Double: 
+						dynamic_cast<EditableNodeParamFloat*>(nParam)->Value = sParam.DoubleValue;
+						break;
+					case NodeParamType::String: 
+						dynamic_cast<EditableNodeParamString*>(nParam)->Value = sParam.StringValue;
+						break;
+					default: break;
+					}
 				}
 			}
 		}
@@ -356,20 +328,26 @@ namespace DCTree
 		return _canBeDeleted;
 	}
 
-	json NodeView::ToJson() const
+	SerializableNode NodeView::Serialize() const
 	{
-		json j;
-		j[DCT_JSON_NODETYPE] = GetNodeTypeName(_nodeType);
-		j[DCT_JSON_EDITORPOS] = { getPosition().getX(), getPosition().getY() };		
-		j[DCT_JSON_PARAMS] = {};
+		SerializableNode sNode;
+		sNode.NodeType = _nodeType;
+		sNode.x = getX();
+		sNode.y = getY();
+
 		for (int i = 0; i < _nodeParams.size(); ++i)
 		{
+			SerializableNodeParam p;
+			p.Name = _nodeParams[i]->Name;
+
 			{
 				auto intParam = dynamic_cast<EditableNodeParamInt *>(_nodeParams[i]);
 
 				if (intParam)
 				{
-					j[DCT_JSON_PARAMS][intParam->Name] = intParam->Value;
+					p.Type = NodeParamType::Int;
+					p.IntValue = intParam->Value;
+					sNode.Params.push_back(p);
 					continue;
 				}
 			}
@@ -379,7 +357,9 @@ namespace DCTree
 
 				if (floatParam)
 				{
-					j[DCT_JSON_PARAMS][floatParam->Name] = floatParam->Value;
+					p.Type = NodeParamType::Double;
+					p.DoubleValue = floatParam->Value;
+					sNode.Params.push_back(p);
 					continue;
 				}
 			}
@@ -388,12 +368,15 @@ namespace DCTree
 
 				if (stringParam)
 				{
-					j[DCT_JSON_PARAMS][stringParam->Name] = stringParam->Value;
+					p.Type = NodeParamType::String;
+					p.StringValue = stringParam->Value;
+					sNode.Params.push_back(p);
 					continue;
 				}
 			}
 		}
-		return j;
+
+		return sNode;
 	}
 
 	void NodeView::AddConnector()

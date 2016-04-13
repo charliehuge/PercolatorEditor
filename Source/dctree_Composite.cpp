@@ -9,3 +9,19 @@
 */
 
 #include "dctree_Composite.h"
+
+namespace DCTree
+{
+	Composite::Composite(std::vector<Node*> children) : _children(children)
+	{
+	}
+
+	Composite::~Composite()
+	{
+		while (!_children.empty())
+		{
+			delete _children.back();
+			_children.pop_back();
+		}
+	}
+}
