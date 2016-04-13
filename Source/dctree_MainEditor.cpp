@@ -56,4 +56,14 @@ namespace DCTree
 			ec->Save();
 		}
 	}
+
+	void MainEditor::SaveTreeAs() const
+	{
+		auto ec = dynamic_cast<EditorContainer*>(getCurrentContentComponent());
+
+		if (ec)
+		{
+			ec->SaveAs();
+		}
+	}
 }

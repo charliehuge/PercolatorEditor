@@ -26,10 +26,9 @@ namespace DCTree
 		~MainEditor();
 
 		void NewTree();
-
 		void LoadTree();
-
 		void SaveTree() const;
+		void SaveTreeAs() const;
 
 	private:
 		OwnedArray<EditorContainer> _editorContainers;
