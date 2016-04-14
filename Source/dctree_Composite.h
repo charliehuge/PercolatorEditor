@@ -14,6 +14,8 @@
 #include "dctree_Node.h"
 #include <vector>
 
+#define DCT_COMPOSITE_MAXCHILDREN 8
+
 namespace DCTree
 {
 	class Composite : public Node

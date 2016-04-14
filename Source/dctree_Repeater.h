@@ -23,6 +23,16 @@ namespace DCTree
 	protected:
 		Result OnTick(double tickTime) override;
 	};
+
+	template<>
+	inline SerializableNode GetDefaultNode<Repeater>()
+	{
+		SerializableNode sNode(ConcreteNodeType::Repeater);
+
+		sNode.MaxChildren = 0;
+
+		return sNode;
+	}
 }
 
 #endif  // DCTREE_REPEATER_H_INCLUDED

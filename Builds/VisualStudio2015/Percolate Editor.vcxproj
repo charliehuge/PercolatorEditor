@@ -129,13 +129,25 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\dctree_TestRunner.cpp"/>
     <ClCompile Include="..\..\Source\dctree_EditableNodeParam.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_SerializableNode.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_SerializableNodeParam.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Serialization.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_Charger.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Composite.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Decorator.cpp"/>
     <ClCompile Include="..\..\Source\dctree_FiniteRepeater.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_Inverter.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_ModSequence.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Node.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_PlayNote.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Repeater.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_RepeatUntil.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_Selector.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_Sequence.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_StopNote.cpp"/>
+    <ClCompile Include="..\..\Source\dctree_Succeeder.cpp"/>
     <ClCompile Include="..\..\Source\dctree_Editor.cpp"/>
     <ClCompile Include="..\..\Source\dctree_EditorContainer.cpp"/>
     <ClCompile Include="..\..\Source\dctree_MainEditor.cpp"/>
@@ -1306,15 +1318,27 @@
     <ClCompile Include="..\..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\dctree_TestRunner.h"/>
     <ClInclude Include="..\..\Source\json.hpp"/>
     <ClInclude Include="..\..\Source\dctree_EditableNodeParam.h"/>
+    <ClInclude Include="..\..\Source\dctree_SerializableNode.h"/>
+    <ClInclude Include="..\..\Source\dctree_SerializableNodeParam.h"/>
     <ClInclude Include="..\..\Source\dctree_Serialization.h"/>
+    <ClInclude Include="..\..\Source\dctree_Charger.h"/>
     <ClInclude Include="..\..\Source\dctree_Composite.h"/>
     <ClInclude Include="..\..\Source\dctree_Decorator.h"/>
     <ClInclude Include="..\..\Source\dctree_FiniteRepeater.h"/>
     <ClInclude Include="..\..\Source\dctree_Include.h"/>
+    <ClInclude Include="..\..\Source\dctree_Inverter.h"/>
+    <ClInclude Include="..\..\Source\dctree_ModSequence.h"/>
     <ClInclude Include="..\..\Source\dctree_Node.h"/>
+    <ClInclude Include="..\..\Source\dctree_PlayNote.h"/>
     <ClInclude Include="..\..\Source\dctree_Repeater.h"/>
+    <ClInclude Include="..\..\Source\dctree_RepeatUntil.h"/>
+    <ClInclude Include="..\..\Source\dctree_Selector.h"/>
+    <ClInclude Include="..\..\Source\dctree_Sequence.h"/>
+    <ClInclude Include="..\..\Source\dctree_StopNote.h"/>
+    <ClInclude Include="..\..\Source\dctree_Succeeder.h"/>
     <ClInclude Include="..\..\Source\dctree_Editor.h"/>
     <ClInclude Include="..\..\Source\dctree_EditorContainer.h"/>
     <ClInclude Include="..\..\Source\dctree_MainEditor.h"/>

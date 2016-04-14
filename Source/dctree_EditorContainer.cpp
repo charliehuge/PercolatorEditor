@@ -74,4 +74,9 @@ namespace DCTree
 	{
 		return _associatedFile != File::nonexistent ? _associatedFile.getFileNameWithoutExtension() : "New Tree";
 	}
+
+	std::string EditorContainer::GetSerialized() const
+	{
+		return CreateJson(_treeEditor.Serialize());
+	}
 }

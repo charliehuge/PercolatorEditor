@@ -66,4 +66,16 @@ namespace DCTree
 			ec->SaveAs();
 		}
 	}
+
+	std::string MainEditor::GetCurrentTabSerialized() const
+	{
+		auto ec = dynamic_cast<EditorContainer*>(getCurrentContentComponent());
+
+		if (ec)
+		{
+			return ec->GetSerialized();
+		}
+
+		return "";
+	}
 }

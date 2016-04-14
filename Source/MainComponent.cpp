@@ -13,6 +13,9 @@
 #define MENUID_SAVE 1002
 #define MENUID_SAVEAS 1003
 
+#define MENUID_RUNTEST 2000
+#define MENUID_STOPTEST 2001
+
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
@@ -40,7 +43,7 @@ void MainContentComponent::resized()
 
 StringArray MainContentComponent::getMenuBarNames()
 {
-	const char* const names[] = { "File", nullptr };
+	const char* const names[] = { "File", "Test", nullptr };
 
 	return StringArray(names);
 }
@@ -55,6 +58,11 @@ PopupMenu MainContentComponent::getMenuForIndex(int topLevelMenuIndex, const Str
 		menu.addItem(MENUID_LOAD, "Load");
 		menu.addItem(MENUID_SAVE, "Save");
 		menu.addItem(MENUID_SAVEAS, "Save As...");
+	}
+	else if (topLevelMenuIndex == 1)
+	{
+		menu.addItem(MENUID_RUNTEST, "Run");
+		menu.addItem(MENUID_STOPTEST, "Stop");
 	}
 
 	return menu;
@@ -75,6 +83,12 @@ void MainContentComponent::menuItemSelected(int menuItemID, int /*topLevelMenuIn
 		break;
 	case MENUID_SAVEAS:
 		_mainEditor.SaveTreeAs();
+		break;
+	case MENUID_RUNTEST:
+		_testTimer.Start(_mainEditor.GetCurrentTabSerialized());
+		break;
+	case MENUID_STOPTEST:
+		_testTimer.Stop();
 		break;
 	}
 }

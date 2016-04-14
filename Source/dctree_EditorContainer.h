@@ -35,6 +35,8 @@ namespace DCTree
 
 		String GetName() const;
 
+		std::string GetSerialized() const;
+
 	private:
 		Viewport _viewport;
 		Editor _treeEditor;

@@ -11,6 +11,8 @@
 #ifndef DC_TREE_NODE_H_INCLUDED
 #define DC_TREE_NODE_H_INCLUDED
 
+#include "dctree_SerializableNode.h"
+
 namespace DCTree
 {
 	enum class Result
@@ -45,6 +47,13 @@ namespace DCTree
 		
 		bool _started;
 	};
+
+	template<class ConcreteNode>
+	SerializableNode GetDefaultNode()
+	{
+		SerializableNode sNode(ConcreteNodeType::INVALID);
+		return sNode;
+	}
 }
 
 #endif  // DC_TREE_NODE_H_INCLUDED

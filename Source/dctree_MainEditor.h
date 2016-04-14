@@ -30,6 +30,8 @@ namespace DCTree
 		void SaveTree() const;
 		void SaveTreeAs() const;
 
+		std::string GetCurrentTabSerialized() const;
+
 	private:
 		OwnedArray<EditorContainer> _editorContainers;
 

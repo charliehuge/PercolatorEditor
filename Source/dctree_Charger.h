@@ -1,42 +1,42 @@
 /*
   ==============================================================================
 
-    dctree_FiniteRepeater.h
-    Created: 8 Apr 2016 7:40:56pm
-    Author:  Charlie Huguenard
+    dctree_Charger.h
+    Created: 13 Apr 2016 1:01:40pm
+    Author:  charl_000
 
   ==============================================================================
 */
 
-#ifndef DCTREE_FINITEREPEATER_H_INCLUDED
-#define DCTREE_FINITEREPEATER_H_INCLUDED
+#ifndef DCTREE_CHARGER_H_INCLUDED
+#define DCTREE_CHARGER_H_INCLUDED
 
 #include "dctree_Decorator.h"
 
 namespace DCTree
 {
-	class FiniteRepeater : public Decorator
+	class Charger : public Decorator
 	{
 	public:
-		explicit FiniteRepeater(Node *child, int numRepeats);
+		Charger(Node *child, int numCharges);
 
 	protected:
 		Result OnStart() override;
 		Result OnTick(double tickTime) override;
 
-		int _numRepeats;
-		int _repeatCount;
+		int _numCharges;
+		int _chargeCount;
 	};
 
 	template<>
-	inline SerializableNode GetDefaultNode<FiniteRepeater>()
+	inline SerializableNode GetDefaultNode<Charger>()
 	{
-		SerializableNode sNode(ConcreteNodeType::FiniteRepeater);
+		SerializableNode sNode(ConcreteNodeType::Charger);
 
 		sNode.MaxChildren = 1;
 
 		SerializableNodeParam p;
-		p.Name = "repeats";
+		p.Name = "charges";
 		p.Type = NodeParamType::Int;
 		p.HasRange = true;
 		p.IntMin = 1;
@@ -46,6 +46,7 @@ namespace DCTree
 
 		return sNode;
 	}
+
 }
 
-#endif  // DCTREE_FINITEREPEATER_H_INCLUDED
+#endif  // DCTREE_CHARGER_H_INCLUDED
