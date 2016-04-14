@@ -31,6 +31,15 @@ namespace DCTree
 		sNode.MaxChildren = 1;
 		return sNode;
 	}
+
+	template<>
+	inline Node *CreateRuntimeNode<Succeeder>(const std::vector<SerializableNodeParam> &/*params*/, const std::vector<Node *> &children)
+	{
+		if (children.size() > 0) 
+			return new Succeeder(children[0]); 
+		else 
+			return nullptr;
+	}
 }
 
 #endif  // DCTREE_SUCCEEDER_H_INCLUDED

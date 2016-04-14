@@ -37,6 +37,11 @@ namespace DCTree
 		return sNode;
 	}
 
+	template<>
+	inline Node *CreateRuntimeNode<Sequence>(const std::vector<SerializableNodeParam> &/*params*/, const std::vector<Node *> &children)
+	{
+		return new Sequence(children);
+	}
 }
 
 #endif  // DCTREE_SEQUENCE_H_INCLUDED

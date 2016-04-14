@@ -52,13 +52,11 @@ namespace DCTree
 
 		for (int i = 0; i < _serializableNode.Params.size(); ++i)
 		{
-			auto param = _serializableNode.Params[i];
-
-			switch (param.Type)
+			switch (_serializableNode.Params[i].Type)
 			{
 			case NodeParamType::Int: 
 			case NodeParamType::Double: 
-				pcs.add(new NodeParamSlider(&param));
+				pcs.add(new NodeParamSlider(&_serializableNode.Params[i]));
 				break;
 			case NodeParamType::String: break;
 			case NodeParamType::Result: break;

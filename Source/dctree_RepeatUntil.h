@@ -45,6 +45,16 @@ namespace DCTree
 		return sNode;
 	}
 
+	template<>
+	inline Node *CreateRuntimeNode<RepeatUntil>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children)
+	{
+		if (params.size() > 0 && children.size() > 0)
+		{
+			return new RepeatUntil(children[0], static_cast<Result>(params[0].IntValue));
+		}
+
+		return nullptr;
+	}
 }
 
 #endif  // DCTREE_REPEATUNTIL_H_INCLUDED

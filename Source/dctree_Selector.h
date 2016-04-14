@@ -37,6 +37,11 @@ namespace DCTree
 		return sNode;
 	}
 
+	template<>
+	inline Node *CreateRuntimeNode<Selector>(const std::vector<SerializableNodeParam> &/*params*/, const std::vector<Node *> &children)
+	{
+		return new Selector(children);
+	}
 }
 
 #endif  // DCTREE_SELECTOR_H_INCLUDED

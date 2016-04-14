@@ -54,6 +54,12 @@ namespace DCTree
 		SerializableNode sNode(ConcreteNodeType::INVALID);
 		return sNode;
 	}
+
+	template<class ConcreteNode>
+	Node *CreateRuntimeNode(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children)
+	{
+		return nullptr;
+	}
 }
 
 #endif  // DC_TREE_NODE_H_INCLUDED

@@ -44,6 +44,15 @@ namespace DCTree
 
 		return sNode;
 	}
+
+	template<>
+	inline Node *CreateRuntimeNode<StopNote>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &/*children*/)
+	{
+		if (params.size() > 0) 
+			return new StopNote(params[0].IntValue); 
+		else 
+			return nullptr;
+	}
 }
 
 #endif  // DCTREE_STOPNOTE_H_INCLUDED

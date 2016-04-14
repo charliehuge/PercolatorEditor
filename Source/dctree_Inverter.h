@@ -33,6 +33,15 @@ namespace DCTree
 
 		return sNode;
 	}
+
+	template<>
+	inline Node *CreateRuntimeNode<Inverter>(const std::vector<SerializableNodeParam> &/*params*/, const std::vector<Node *> &children)
+	{
+		if (children.size() > 0)
+			return new Inverter(children[0]);
+		else
+			return nullptr;
+	}
 }
 
 #endif  // DCTREE_INVERTER_H_INCLUDED

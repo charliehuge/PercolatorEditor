@@ -47,6 +47,16 @@ namespace DCTree
 		return sNode;
 	}
 
+	template<>
+	inline Node *CreateRuntimeNode<Charger>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children)
+	{
+		if (params.size() > 0 && children.size() > 0)
+		{
+			return new Charger(children[0], params[0].IntValue);
+		}
+
+		return nullptr;
+	}
 }
 
 #endif  // DCTREE_CHARGER_H_INCLUDED

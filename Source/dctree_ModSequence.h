@@ -47,6 +47,14 @@ namespace DCTree
 		return sNode;
 	}
 
+	template<>
+	inline Node *CreateRuntimeNode<ModSequence>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children)
+	{
+		if (params.size() > 0)
+			return new ModSequence(children, params[0].IntValue);
+		else
+			return nullptr;
+	}
 }
 
 #endif  // DCTREE_MODSEQUENCE_H_INCLUDED

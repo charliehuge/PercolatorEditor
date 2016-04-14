@@ -45,6 +45,14 @@ namespace DCTree
 		return sNode;
 	}
 
+	template<>
+	inline Node *CreateRuntimeNode<PlayNote>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &/*children*/)
+	{
+		if (params.size() > 0)
+			return new PlayNote(params[0].IntValue);
+		else
+			return nullptr;
+	}
 }
 
 #endif  // DCTREE_PLAYNOTE_H_INCLUDED

@@ -29,7 +29,7 @@ namespace DCTree
 	Runtime tree creation
 	*/
 	Node* CreateRuntimeTree(int index, const std::vector<SerializableNode>& sNodes);
-	Node* CreateRuntimeNode(const SerializableNode& sNode, std::vector<Node*> children);
+	Node* CreateRuntimeNodeWrapper(const SerializableNode& sNode, const std::vector<Node*> &children);
 
 	Node* CreateRuntimeTree(const std::string& jsonString)
 	{
@@ -60,73 +60,39 @@ namespace DCTree
 			children.push_back(CreateRuntimeTree(sNode.ChildIndexes[i], sNodes));
 		}
 
-		return CreateRuntimeNode(sNode, children);
+		return CreateRuntimeNodeWrapper(sNode, children);
 	}
 
-	Node* CreateRuntimeNode(const SerializableNode& sNode, std::vector<Node*> children)
+	Node* CreateRuntimeNodeWrapper(const SerializableNode& sNode, const std::vector<Node*> &children)
 	{
 		switch (sNode.NodeType)
 		{
-		case ConcreteNodeType::Repeater:
-		{
-			if (children.size() > 0)
-				return new Repeater(children[0]);
-
-			return nullptr;
-		}
+		case ConcreteNodeType::Charger: 
+			return CreateRuntimeNode<Charger>(sNode.Params, children);
 		case ConcreteNodeType::FiniteRepeater:
-		{
-			if (children.size() > 0)
-			{
-				auto numRepeats = 1;
-
-				for (size_t i = 0; i < sNode.Params.size(); ++i)
-				{
-					if (sNode.Params[i].Name.compare("NumRepeats") == 0)
-					{
-						numRepeats = sNode.Params[i].IntValue;
-					}
-				}
-
-				return new FiniteRepeater(children[0], numRepeats);
-			}
-
-			return nullptr;
-		}
-		case ConcreteNodeType::Sequence: break;
-		case ConcreteNodeType::Selector: break;
-		case ConcreteNodeType::PlayNote:
-		{
-			auto note = 0;
-
-			for (size_t i = 0; i < sNode.Params.size(); ++i)
-			{
-				if (sNode.Params[i].Name.compare("Note") == 0)
-				{
-					note = sNode.Params[i].IntValue;
-				}
-			}
-
-			return new PlayNote(note);
-		}
-
-		case ConcreteNodeType::StopNote: break;
-		case ConcreteNodeType::Charger: break;
-		case ConcreteNodeType::Inverter: break;
+			return CreateRuntimeNode<FiniteRepeater>(sNode.Params, children);
+		case ConcreteNodeType::Inverter:
+			return CreateRuntimeNode<Inverter>(sNode.Params, children);
 		case ConcreteNodeType::ModSequence:
-		{
-			auto modTicks = 0;
-
-			for (size_t i = 0; i < sNode.Params.size(); ++i)
-			{
-				if (sNode.Params[i].Name.compare("ModTicks") == 0)
-				{
-
-				}
-			}
-		}
-		case ConcreteNodeType::RepeatUntil: break;
-		case ConcreteNodeType::Succeeder: break;
+			return CreateRuntimeNode<ModSequence>(sNode.Params, children);
+		case ConcreteNodeType::PlayNote:
+			return CreateRuntimeNode<PlayNote>(sNode.Params, children);
+		case ConcreteNodeType::Repeater:
+			return CreateRuntimeNode<Repeater>(sNode.Params, children);
+		case ConcreteNodeType::RepeatUntil:
+			return CreateRuntimeNode<RepeatUntil>(sNode.Params, children);
+		case ConcreteNodeType::Selector:
+			return CreateRuntimeNode<Selector>(sNode.Params, children);
+		case ConcreteNodeType::Sequence:
+			return CreateRuntimeNode<Sequence>(sNode.Params, children);
+		case ConcreteNodeType::StopNote:
+			return CreateRuntimeNode<StopNote>(sNode.Params, children);
+		case ConcreteNodeType::Succeeder:
+			return CreateRuntimeNode<Succeeder>(sNode.Params, children);
+		case ConcreteNodeType::COUNT:
+		case ConcreteNodeType::INVALID:
+		case ConcreteNodeType::ROOT:
+			break;
 		}
 
 		return nullptr;

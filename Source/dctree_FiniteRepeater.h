@@ -46,6 +46,17 @@ namespace DCTree
 
 		return sNode;
 	}
+
+	template<>
+	inline Node *CreateRuntimeNode<FiniteRepeater>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children)
+	{
+		if (params.size() > 0 && children.size() > 0)
+		{
+			return new FiniteRepeater(children[0], params[0].IntValue);
+		}
+
+		return nullptr;
+	}
 }
 
 #endif  // DCTREE_FINITEREPEATER_H_INCLUDED

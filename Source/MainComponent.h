@@ -27,7 +27,7 @@ public:
 		_testRunner.Tick(_elapsedTime);
 	}
 
-	void Start(std::string json)
+	void Start(const std::string &json)
 	{
 		_testRunner.Init(DCTree::CreateRuntimeTree(json));
 		_elapsedTime = 0;
