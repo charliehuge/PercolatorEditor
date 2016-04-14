@@ -14,7 +14,7 @@
 //==============================================================================
 namespace DCTree
 {
-	NodeParamTextBox::NodeParamTextBox(EditableNodeParam *param) : TextPropertyComponent(param->Name, 32, false), _param(param)
+	NodeParamTextBox::NodeParamTextBox(SerializableNodeParam* param): TextPropertyComponent(param->Name, 32, false), _param(param)
 	{
 	}
 

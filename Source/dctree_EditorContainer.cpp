@@ -36,7 +36,7 @@ namespace DCTree
 		if (fc.browseForFileToOpen())
 		{
 			_associatedFile = fc.getResult();
-			_treeEditor.Deserialize(CreateSerializableNodes(_associatedFile.loadFileAsString().toStdString()));
+			_treeEditor.Deserialize(DeserializeTree(_associatedFile.loadFileAsString().toStdString()));
 			repaint();
 			return true;
 		}
@@ -51,7 +51,7 @@ namespace DCTree
 			return SaveAs();
 		}
 
-		_associatedFile.replaceWithText(CreateJson(_treeEditor.Serialize(), true));
+		_associatedFile.replaceWithText(SerializeTree(_treeEditor.Serialize(), true));
 		
 		return true;
 	}
@@ -63,7 +63,7 @@ namespace DCTree
 		if (fc.browseForFileToSave(true))
 		{
 			_associatedFile = fc.getResult();
-			_associatedFile.replaceWithText(CreateJson(_treeEditor.Serialize(), true));
+			_associatedFile.replaceWithText(SerializeTree(_treeEditor.Serialize(), true));
 			return true;
 		}
 
@@ -77,6 +77,6 @@ namespace DCTree
 
 	std::string EditorContainer::GetSerialized() const
 	{
-		return CreateJson(_treeEditor.Serialize());
+		return SerializeTree(_treeEditor.Serialize());
 	}
 }

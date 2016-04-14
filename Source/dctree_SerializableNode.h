@@ -21,8 +21,7 @@ namespace DCTree
 {
 	enum class ConcreteNodeType
 	{
-		ROOT = 0,
-		Charger,
+		Charger = 0,
 		FiniteRepeater,
 		Inverter,
 		ModSequence,
@@ -34,7 +33,8 @@ namespace DCTree
 		StopNote,
 		Succeeder,
 		COUNT,
-		INVALID
+		INVALID,
+		ROOT,
 	};
 
 	enum class NodeParamType { Int, Double, String, Result };
@@ -56,6 +56,7 @@ namespace DCTree
 	class SerializableNode
 	{
 	public:
+		SerializableNode();
 		explicit SerializableNode(ConcreteNodeType nodeType);
 
 		ConcreteNodeType NodeType;
@@ -64,18 +65,16 @@ namespace DCTree
 		std::vector<SerializableNodeParam> Params;
 		int x, y;
 
-		static std::string Serialize(const std::vector<SerializableNode> &sNodes, bool prettyPrint = true);
-		static std::vector<SerializableNode> Deserialize(const std::string &jsonString);
-
+		json ToJson() const;
+		void FromJson(const json &jsonString);
 		std::string GetDisplayName() const;
 		std::string GetTypeName() const;
+
+		static std::string GetDisplayName(ConcreteNodeType nodeType);
 
 	private:
 		const static std::map<ConcreteNodeType, std::string> _displayNames;
 		const static std::map<ConcreteNodeType, std::string> _typeNames;
-
-		json ToJson() const;
-		void FromJson(const json &jsonString);
 	};
 
 }

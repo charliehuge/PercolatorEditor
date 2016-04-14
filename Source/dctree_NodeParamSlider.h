@@ -12,7 +12,7 @@
 #define DCTREE_NODEPARAMSLIDER_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "dctree_EditableNodeParam.h"
+#include "dctree_DCTree.h"
 
 //==============================================================================
 /*
@@ -22,15 +22,14 @@ namespace DCTree
 	class NodeParamSlider : public SliderPropertyComponent
 	{
 	public:
-		explicit NodeParamSlider(EditableNodeParamFloat *param);
-		explicit NodeParamSlider(EditableNodeParamInt *param);
+		explicit NodeParamSlider(SerializableNodeParam *param);
 		~NodeParamSlider();
 
 		void setValue(double newValue) override;
 		double getValue() const override;
 		
 	private:
-		EditableNodeParam *_param;
+		SerializableNodeParam *_param;
 
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NodeParamSlider)
 	};

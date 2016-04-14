@@ -14,16 +14,26 @@
 //==============================================================================
 namespace DCTree
 {
-	NodeParamSlider::NodeParamSlider(EditableNodeParamFloat* param) 
-		: SliderPropertyComponent(param->Name, param->HasRange ? param->Min : -9999, param->HasRange ? param->Max : 9999, 0),
-		_param(param)
+	NodeParamSlider::NodeParamSlider(SerializableNodeParam* param): SliderPropertyComponent(param->Name, -999, 999, 0), _param(param)
 	{
-	}
-
-	NodeParamSlider::NodeParamSlider(EditableNodeParamInt* param)
-		: SliderPropertyComponent(param->Name, param->HasRange ? param->Min : -9999, param->HasRange ? param->Max : 9999, 1),
-		_param(param)
-	{
+		switch (param->Type)
+		{
+		case NodeParamType::Int: 
+			if (param->HasRange)
+			{
+				slider.setRange(param->IntMin, param->IntMax, 1);
+			}
+			break;
+		case NodeParamType::Double: 
+			if (param->HasRange)
+			{
+				slider.setRange(param->DoubleMin, param->DoubleMax);
+			}
+			break;
+		case NodeParamType::Result:
+		case NodeParamType::String:
+			jassertfalse;
+		}
 	}
 
 	NodeParamSlider::~NodeParamSlider()
@@ -32,37 +42,32 @@ namespace DCTree
 
 	void NodeParamSlider::setValue(double newValue)
 	{
-		auto intParam = dynamic_cast<EditableNodeParamInt *>(_param);
-
-		if (intParam)
+		switch (_param->Type)
 		{
-			intParam->Value = static_cast<int>(newValue);
-			return;
-		}
-
-		auto floatParam = dynamic_cast<EditableNodeParamFloat *>(_param);
-
-		if (floatParam)
-		{
-			floatParam->Value = newValue;
-			return;
+		case NodeParamType::Int:
+			_param->IntValue = static_cast<int>(newValue);
+			break;
+		case NodeParamType::Double: 
+			_param->DoubleValue = newValue;
+			break;
+		case NodeParamType::String:
+		case NodeParamType::Result:
+			jassertfalse;
+			break;
 		}
 	}
 
 	double NodeParamSlider::getValue() const
 	{
-		auto intParam = dynamic_cast<EditableNodeParamInt *>(_param);
-
-		if (intParam)
+		switch (_param->Type)
 		{
-			return static_cast<double>(intParam->Value);
-		}
-
-		auto floatParam = dynamic_cast<EditableNodeParamFloat *>(_param);
-
-		if (floatParam)
-		{
-			return floatParam->Value;
+		case NodeParamType::Int:
+			return _param->IntValue;
+		case NodeParamType::Double:
+			return _param->DoubleValue;
+		case NodeParamType::String:
+		case NodeParamType::Result:
+			jassertfalse;
 		}
 
 		return 0;

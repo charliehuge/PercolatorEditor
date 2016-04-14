@@ -11,8 +11,7 @@
 #ifndef DCTREE_TESTRUNNER_H_INCLUDED
 #define DCTREE_TESTRUNNER_H_INCLUDED
 
-#include "dctree_Include.h"
-#include "dctree_Serialization.h"
+#include "dctree_DCTree.h"
 
 namespace DCTree
 {

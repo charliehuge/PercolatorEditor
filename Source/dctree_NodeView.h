@@ -12,9 +12,8 @@
 #define DCTREE_NODEVIEW_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "dctree_EditableNodeParam.h"
 #include "dctree_NodeConnector.h"
-#include "dctree_Serialization.h"
+#include "dctree_DCTree.h"
 
 //==============================================================================
 /*
@@ -47,7 +46,7 @@ namespace DCTree
 		void Highlight(bool highlight);
 		bool CanBeDeleted() const;
 
-		SerializableNode Serialize() const;
+		SerializableNode GetSerializableNode() const;
 
 	private:
 		void Init(int x, int y);
@@ -60,11 +59,9 @@ namespace DCTree
 		PropertyPanel _propertyPanel;
 		OwnedArray<NodeConnector> _connectors;
 
-		ConcreteNodeType _nodeType;
-		OwnedArray<EditableNodeParam> _nodeParams;
+		SerializableNode _serializableNode;
 		Array<NodeView *> _children;
 		NodeView *_parent;
-		int _maxChildren;
 		bool _isHighlighted;
 		bool _canBeDeleted;
 

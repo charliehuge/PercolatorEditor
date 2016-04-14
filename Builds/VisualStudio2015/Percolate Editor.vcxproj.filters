@@ -14,11 +14,11 @@
     <Filter Include="Percolate Editor\Source\ExternalLibraries">
       <UniqueIdentifier>{96691B87-34B7-9739-828D-51AC5B42408A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Percolate Editor\Source\DCTreeSerialization">
-      <UniqueIdentifier>{73E425BB-DC8E-062E-EA65-7294670C60D5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Percolate Editor\Source\DCTree">
       <UniqueIdentifier>{729204EE-0446-C079-480D-16CA9C92665C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Percolate Editor\Source\DCTree\Nodes">
+      <UniqueIdentifier>{203E78DA-D428-E47A-9AC5-8743BFF4D952}</UniqueIdentifier>
     </Filter>
     <Filter Include="Percolate Editor\Source\DCTreeEditor">
       <UniqueIdentifier>{B3AD118D-90AD-50AC-9E1B-5F36962A929F}</UniqueIdentifier>
@@ -325,58 +325,52 @@
     <ClCompile Include="..\..\Source\dctree_TestRunner.cpp">
       <Filter>Percolate Editor\Source\DCTreeTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_EditableNodeParam.cpp">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_SerializableNode.cpp">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_SerializableNodeParam.cpp">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_Serialization.cpp">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_Charger.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_Composite.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_Decorator.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\dctree_FiniteRepeater.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Inverter.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_ModSequence.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Node.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_PlayNote.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Repeater.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_RepeatUntil.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Selector.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Sequence.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_StopNote.cpp">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Succeeder.cpp">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_Charger.cpp">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_Composite.cpp">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_Decorator.cpp">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_FiniteRepeater.cpp">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_DCTree.cpp">
+      <Filter>Percolate Editor\Source\DCTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dctree_SerializableNode.cpp">
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dctree_Editor.cpp">
@@ -1674,61 +1668,52 @@
     <ClInclude Include="..\..\Source\json.hpp">
       <Filter>Percolate Editor\Source\ExternalLibraries</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_EditableNodeParam.h">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_SerializableNode.h">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_SerializableNodeParam.h">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_Serialization.h">
-      <Filter>Percolate Editor\Source\DCTreeSerialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_Charger.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_Composite.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_Decorator.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_FiniteRepeater.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\dctree_Include.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Inverter.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_ModSequence.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Node.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_PlayNote.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Repeater.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_RepeatUntil.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Selector.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Sequence.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_StopNote.h">
-      <Filter>Percolate Editor\Source\DCTree</Filter>
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Succeeder.h">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_Charger.h">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_Composite.h">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_Decorator.h">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_FiniteRepeater.h">
+      <Filter>Percolate Editor\Source\DCTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_DCTree.h">
+      <Filter>Percolate Editor\Source\DCTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dctree_SerializableNode.h">
       <Filter>Percolate Editor\Source\DCTree</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dctree_Editor.h">

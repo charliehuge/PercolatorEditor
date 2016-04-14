@@ -10,7 +10,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_Editor.h"
-#include "dctree_Serialization.h"
 
 #define DCTREEEDITOR_WIDTH 4000
 #define DCTREEEDITOR_HEIGHT 2000
@@ -129,7 +128,7 @@ namespace DCTree
 			int count = static_cast<int>(ConcreteNodeType::COUNT);
 			for (int i = 0; i < count; ++i)
 			{
-				p.addItem(i + 1, GetNodeDisplayName(static_cast<ConcreteNodeType>(i)));
+				p.addItem(i + 1, SerializableNode::GetDisplayName(static_cast<ConcreteNodeType>(i)));
 			}
 
 			const int result = p.show();
@@ -182,7 +181,7 @@ namespace DCTree
 
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
-			sNodes.push_back(_nodeViews[i]->Serialize());
+			sNodes.push_back(_nodeViews[i]->GetSerializableNode());
 		}
 
 		for (int i = 0; i < _nodeViews.size(); ++i)

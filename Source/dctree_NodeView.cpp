@@ -12,9 +12,6 @@
 #include "dctree_NodeView.h"
 #include "dctree_NodeParamSlider.h"
 
-#define NODE_COMPOSITE_MAX_CHILDREN 16
-#define NODE_DECORATOR_MAX_CHILDREN 1
-#define NODE_LEAF_MAX_CHILDREN 0
 #define NODEVIEW_WIDTH 200
 #define NODEVIEW_PADDING 8
 #define NODEVIEW_PARAMS_YOFFSET 28
@@ -25,130 +22,54 @@
 //==============================================================================
 namespace DCTree
 {
-	NodeView::NodeView(const SerializableNode &sNode): _parent(nullptr), _isHighlighted(false)
+	NodeView::NodeView(const SerializableNode &sNode): _serializableNode(sNode), _parent(nullptr), _isHighlighted(false)
 	{
-		_nodeType = sNode.NodeType;
-
 		Init(sNode.x, sNode.y);
-
-		for (size_t i = 0; i < sNode.Params.size(); ++i)
-		{
-			auto sParam = sNode.Params[i];
-
-			for (int j = 0; j < _nodeParams.size(); ++j)
-			{
-				auto nParam = _nodeParams[j];
-
-				if (nParam->Name.compare(sParam.Name) == 0)
-				{
-					switch (sParam.Type)
-					{
-					case NodeParamType::Int: 
-						dynamic_cast<EditableNodeParamInt *>(nParam)->Value = sParam.IntValue;
-						break;
-					case NodeParamType::Double: 
-						dynamic_cast<EditableNodeParamFloat*>(nParam)->Value = sParam.DoubleValue;
-						break;
-					case NodeParamType::String: 
-						dynamic_cast<EditableNodeParamString*>(nParam)->Value = sParam.StringValue;
-						break;
-					default: break;
-					}
-				}
-			}
-		}
-
-		_propertyPanel.refreshAll();
 	}
 
-	NodeView::NodeView(ConcreteNodeType nodeType, int x, int y) : _nodeType(nodeType), _parent(nullptr), _isHighlighted(false)
+	NodeView::NodeView(ConcreteNodeType nodeType, int x, int y) : _parent(nullptr), _isHighlighted(false)
 	{
-		jassert(nodeType != ConcreteNodeType::COUNT);
+		if (nodeType == ConcreteNodeType::ROOT)
+		{
+			_serializableNode.NodeType = ConcreteNodeType::ROOT;
+			_serializableNode.MaxChildren = 1;
+		}
+		else
+		{
+			_serializableNode = CreateDefaultSerializableNode(nodeType);
+		}
+
+		jassert(_serializableNode.NodeType != ConcreteNodeType::INVALID);
+
 		Init(x, y);
 	}
 
 	void NodeView::Init(int x, int y)
 	{
-		_canBeDeleted = _nodeType != ConcreteNodeType::ROOT;
-
-		switch (_nodeType)
-		{
-		case ConcreteNodeType::ROOT:
-			_maxChildren = 1;
-			break;
-		case ConcreteNodeType::Repeater:
-			_maxChildren = NODE_DECORATOR_MAX_CHILDREN;
-			break;
-		case ConcreteNodeType::FiniteRepeater:
-			_maxChildren = NODE_DECORATOR_MAX_CHILDREN;
-			{
-				auto repeatParam = new EditableNodeParamInt();
-				repeatParam->Name = "NumRepeats";
-				repeatParam->HasRange = true;
-				repeatParam->Min = 1;
-				repeatParam->Max = 32;
-				repeatParam->Value = 2;
-				_nodeParams.add(repeatParam);
-			}
-			break;
-		case ConcreteNodeType::Sequence:
-			_maxChildren = NODE_COMPOSITE_MAX_CHILDREN;
-			break;
-		case ConcreteNodeType::Selector:
-			_maxChildren = NODE_COMPOSITE_MAX_CHILDREN;
-			break;
-		case ConcreteNodeType::PlayNote:
-			_maxChildren = NODE_LEAF_MAX_CHILDREN;
-			{
-				auto noteParam = new EditableNodeParamInt();
-				noteParam->Name = "Note";
-				noteParam->HasRange = true;
-				noteParam->Min = 0;
-				noteParam->Max = 127;
-				noteParam->Value = 60;
-				_nodeParams.add(noteParam);
-			}
-			break;
-		case ConcreteNodeType::StopNote:
-			_maxChildren = NODE_LEAF_MAX_CHILDREN;
-			{
-				auto noteParam = new EditableNodeParamInt();
-				noteParam->Name = "Note";
-				noteParam->HasRange = true;
-				noteParam->Min = 0;
-				noteParam->Max = 127;
-				noteParam->Value = 60;
-				_nodeParams.add(noteParam);
-			}
-			break;
-		default: break;
-		}
+		_canBeDeleted = _serializableNode.NodeType != ConcreteNodeType::ROOT;
 
 		Array<PropertyComponent *> pcs;
 
-		for (int i = 0; i < _nodeParams.size(); ++i)
+		for (int i = 0; i < _serializableNode.Params.size(); ++i)
 		{
-			auto intParam = dynamic_cast<EditableNodeParamInt *>(_nodeParams[i]);
+			auto param = _serializableNode.Params[i];
 
-			if (intParam)
+			switch (param.Type)
 			{
-				pcs.add(new NodeParamSlider(intParam));
-				continue;
-			}
-
-			auto floatParam = dynamic_cast<EditableNodeParamFloat *>(_nodeParams[i]);
-
-			if (floatParam)
-			{
-				pcs.add(new NodeParamSlider(floatParam));
-				continue;
+			case NodeParamType::Int: 
+			case NodeParamType::Double: 
+				pcs.add(new NodeParamSlider(&param));
+				break;
+			case NodeParamType::String: break;
+			case NodeParamType::Result: break;
+			default: break;
 			}
 		}
 
 		_propertyPanel.addProperties(pcs);
 		addAndMakeVisible(_propertyPanel);
 
-		if (_maxChildren > 0)
+		if (_serializableNode.MaxChildren > 0)
 		{
 			AddConnector();
 		}
@@ -170,7 +91,7 @@ namespace DCTree
 
 		g.setColour(Colours::darkgrey);
 		g.setFont(18);
-		g.drawText(GetNodeDisplayName(_nodeType), getLocalBounds().reduced(NODEVIEW_PADDING), Justification::topLeft);
+		g.drawText(_serializableNode.GetDisplayName(), getLocalBounds().reduced(NODEVIEW_PADDING), Justification::topLeft);
 	}
 
 	void NodeView::resized()
@@ -214,7 +135,7 @@ namespace DCTree
 
 	void NodeView::InsertChild(NodeView* child, int index)
 	{
-		jassert(_maxChildren > 0);
+		jassert(_serializableNode.MaxChildren > 0);
 
 		if (child->_parent)
 		{
@@ -231,14 +152,14 @@ namespace DCTree
 			}
 		}
 
-		while (_children.size() >= _maxChildren)
+		while (_children.size() >= _serializableNode.MaxChildren)
 		{
 			RemoveChild(_children.size() - 1);
 		}
 
 		_children.insert(index, child);
 
-		if (_children.size() < _maxChildren - 1)
+		if (_children.size() < _serializableNode.MaxChildren - 1)
 		{
 			AddConnector();
 		}
@@ -246,7 +167,7 @@ namespace DCTree
 
 	void NodeView::MoveChild(int current, int destination)
 	{
-		if (_maxChildren <= 1 || current < 0 || destination < 0 || current >= _maxChildren || destination >= _maxChildren)
+		if (_serializableNode.MaxChildren <= 1 || current < 0 || destination < 0 || current >= _serializableNode.MaxChildren || destination >= _serializableNode.MaxChildren)
 		{
 			return;
 		}
@@ -328,55 +249,9 @@ namespace DCTree
 		return _canBeDeleted;
 	}
 
-	SerializableNode NodeView::Serialize() const
+	SerializableNode NodeView::GetSerializableNode() const
 	{
-		SerializableNode sNode;
-		sNode.NodeType = _nodeType;
-		sNode.x = getX();
-		sNode.y = getY();
-
-		for (int i = 0; i < _nodeParams.size(); ++i)
-		{
-			SerializableNodeParam p;
-			p.Name = _nodeParams[i]->Name;
-
-			{
-				auto intParam = dynamic_cast<EditableNodeParamInt *>(_nodeParams[i]);
-
-				if (intParam)
-				{
-					p.Type = NodeParamType::Int;
-					p.IntValue = intParam->Value;
-					sNode.Params.push_back(p);
-					continue;
-				}
-			}
-
-			{
-				auto floatParam = dynamic_cast<EditableNodeParamFloat *>(_nodeParams[i]);
-
-				if (floatParam)
-				{
-					p.Type = NodeParamType::Double;
-					p.DoubleValue = floatParam->Value;
-					sNode.Params.push_back(p);
-					continue;
-				}
-			}
-			{
-				auto stringParam = dynamic_cast<EditableNodeParamString *>(_nodeParams[i]);
-
-				if (stringParam)
-				{
-					p.Type = NodeParamType::String;
-					p.StringValue = stringParam->Value;
-					sNode.Params.push_back(p);
-					continue;
-				}
-			}
-		}
-
-		return sNode;
+		return _serializableNode;
 	}
 
 	void NodeView::AddConnector()

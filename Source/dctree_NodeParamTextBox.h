@@ -12,7 +12,7 @@
 #define DCTREE_NODEPARAMTEXTBOX_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "dctree_EditableNodeParam.h"
+#include "dctree_DCTree.h"
 
 //==============================================================================
 /*
@@ -22,12 +22,12 @@ namespace DCTree
 	class NodeParamTextBox : public TextPropertyComponent
 	{
 	public:
-		NodeParamTextBox(EditableNodeParam *param);
+		explicit NodeParamTextBox(SerializableNodeParam *param);
 		~NodeParamTextBox();
 
 
 	private:
-		EditableNodeParam *_param;
+		SerializableNodeParam *_param;
 
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NodeParamTextBox)
 	};

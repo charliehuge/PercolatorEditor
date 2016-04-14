@@ -15,81 +15,70 @@
       <GROUP id="{D36FFE57-240C-EBA8-F0CD-792BD1C62606}" name="ExternalLibraries">
         <FILE id="Yov4n5" name="json.hpp" compile="0" resource="0" file="Source/json.hpp"/>
       </GROUP>
-      <GROUP id="{606721A3-8024-CA8F-6518-5E328669AB4A}" name="DCTreeSerialization">
-        <FILE id="TMtCso" name="dctree_EditableNodeParam.cpp" compile="1" resource="0"
-              file="Source/dctree_EditableNodeParam.cpp"/>
-        <FILE id="cMAZML" name="dctree_EditableNodeParam.h" compile="0" resource="0"
-              file="Source/dctree_EditableNodeParam.h"/>
+      <GROUP id="{2E93404C-20B0-3799-0FB5-AE26A5E41D09}" name="DCTree">
+        <GROUP id="{118295A3-65F5-8AE3-8A48-FB1F7A66FAD0}" name="Nodes">
+          <FILE id="OaL7DB" name="dctree_Inverter.cpp" compile="1" resource="0"
+                file="Source/dctree_Inverter.cpp"/>
+          <FILE id="AANsmc" name="dctree_Inverter.h" compile="0" resource="0"
+                file="Source/dctree_Inverter.h"/>
+          <FILE id="ZKWPQG" name="dctree_ModSequence.cpp" compile="1" resource="0"
+                file="Source/dctree_ModSequence.cpp"/>
+          <FILE id="szaWbM" name="dctree_ModSequence.h" compile="0" resource="0"
+                file="Source/dctree_ModSequence.h"/>
+          <FILE id="rQyAlh" name="dctree_Node.cpp" compile="1" resource="0" file="Source/dctree_Node.cpp"/>
+          <FILE id="VpTKZo" name="dctree_Node.h" compile="0" resource="0" file="Source/dctree_Node.h"/>
+          <FILE id="AteLsF" name="dctree_PlayNote.cpp" compile="1" resource="0"
+                file="Source/dctree_PlayNote.cpp"/>
+          <FILE id="BBpnWj" name="dctree_PlayNote.h" compile="0" resource="0"
+                file="Source/dctree_PlayNote.h"/>
+          <FILE id="RsHbWC" name="dctree_Repeater.cpp" compile="1" resource="0"
+                file="Source/dctree_Repeater.cpp"/>
+          <FILE id="NVwcJv" name="dctree_Repeater.h" compile="0" resource="0"
+                file="Source/dctree_Repeater.h"/>
+          <FILE id="bXxJYO" name="dctree_RepeatUntil.cpp" compile="1" resource="0"
+                file="Source/dctree_RepeatUntil.cpp"/>
+          <FILE id="CCow6a" name="dctree_RepeatUntil.h" compile="0" resource="0"
+                file="Source/dctree_RepeatUntil.h"/>
+          <FILE id="yPy7b6" name="dctree_Selector.cpp" compile="1" resource="0"
+                file="Source/dctree_Selector.cpp"/>
+          <FILE id="R1Gk87" name="dctree_Selector.h" compile="0" resource="0"
+                file="Source/dctree_Selector.h"/>
+          <FILE id="CACNcS" name="dctree_Sequence.cpp" compile="1" resource="0"
+                file="Source/dctree_Sequence.cpp"/>
+          <FILE id="LtPuZx" name="dctree_Sequence.h" compile="0" resource="0"
+                file="Source/dctree_Sequence.h"/>
+          <FILE id="YJHHCD" name="dctree_StopNote.cpp" compile="1" resource="0"
+                file="Source/dctree_StopNote.cpp"/>
+          <FILE id="ABxYYt" name="dctree_StopNote.h" compile="0" resource="0"
+                file="Source/dctree_StopNote.h"/>
+          <FILE id="DArESf" name="dctree_Succeeder.cpp" compile="1" resource="0"
+                file="Source/dctree_Succeeder.cpp"/>
+          <FILE id="dWuxtJ" name="dctree_Succeeder.h" compile="0" resource="0"
+                file="Source/dctree_Succeeder.h"/>
+          <FILE id="buxQpH" name="dctree_Charger.cpp" compile="1" resource="0"
+                file="Source/dctree_Charger.cpp"/>
+          <FILE id="YwMrW3" name="dctree_Charger.h" compile="0" resource="0"
+                file="Source/dctree_Charger.h"/>
+          <FILE id="kXnpyX" name="dctree_Composite.cpp" compile="1" resource="0"
+                file="Source/dctree_Composite.cpp"/>
+          <FILE id="ZTKn4T" name="dctree_Composite.h" compile="0" resource="0"
+                file="Source/dctree_Composite.h"/>
+          <FILE id="flZbIv" name="dctree_Decorator.cpp" compile="1" resource="0"
+                file="Source/dctree_Decorator.cpp"/>
+          <FILE id="jFdidq" name="dctree_Decorator.h" compile="0" resource="0"
+                file="Source/dctree_Decorator.h"/>
+          <FILE id="lsHHNJ" name="dctree_FiniteRepeater.cpp" compile="1" resource="0"
+                file="Source/dctree_FiniteRepeater.cpp"/>
+          <FILE id="P65JbW" name="dctree_FiniteRepeater.h" compile="0" resource="0"
+                file="Source/dctree_FiniteRepeater.h"/>
+        </GROUP>
+        <FILE id="jkJRm1" name="dctree_DCTree.cpp" compile="1" resource="0"
+              file="Source/dctree_DCTree.cpp"/>
+        <FILE id="Ntokd3" name="dctree_DCTree.h" compile="0" resource="0" file="Source/dctree_DCTree.h"/>
         <FILE id="VRiyxU" name="dctree_SerializableNode.cpp" compile="1" resource="0"
               file="Source/dctree_SerializableNode.cpp"/>
         <FILE id="jNYnoZ" name="dctree_SerializableNode.h" compile="0" resource="0"
               file="Source/dctree_SerializableNode.h"/>
-        <FILE id="Lk8icB" name="dctree_SerializableNodeParam.cpp" compile="1"
-              resource="0" file="Source/dctree_SerializableNodeParam.cpp"/>
-        <FILE id="h2qmEw" name="dctree_SerializableNodeParam.h" compile="0"
-              resource="0" file="Source/dctree_SerializableNodeParam.h"/>
-        <FILE id="VHghFP" name="dctree_Serialization.cpp" compile="1" resource="0"
-              file="Source/dctree_Serialization.cpp"/>
-        <FILE id="efagy3" name="dctree_Serialization.h" compile="0" resource="0"
-              file="Source/dctree_Serialization.h"/>
-      </GROUP>
-      <GROUP id="{2E93404C-20B0-3799-0FB5-AE26A5E41D09}" name="DCTree">
-        <FILE id="buxQpH" name="dctree_Charger.cpp" compile="1" resource="0"
-              file="Source/dctree_Charger.cpp"/>
-        <FILE id="YwMrW3" name="dctree_Charger.h" compile="0" resource="0"
-              file="Source/dctree_Charger.h"/>
-        <FILE id="kXnpyX" name="dctree_Composite.cpp" compile="1" resource="0"
-              file="Source/dctree_Composite.cpp"/>
-        <FILE id="ZTKn4T" name="dctree_Composite.h" compile="0" resource="0"
-              file="Source/dctree_Composite.h"/>
-        <FILE id="flZbIv" name="dctree_Decorator.cpp" compile="1" resource="0"
-              file="Source/dctree_Decorator.cpp"/>
-        <FILE id="jFdidq" name="dctree_Decorator.h" compile="0" resource="0"
-              file="Source/dctree_Decorator.h"/>
-        <FILE id="lsHHNJ" name="dctree_FiniteRepeater.cpp" compile="1" resource="0"
-              file="Source/dctree_FiniteRepeater.cpp"/>
-        <FILE id="P65JbW" name="dctree_FiniteRepeater.h" compile="0" resource="0"
-              file="Source/dctree_FiniteRepeater.h"/>
-        <FILE id="MzxbKA" name="dctree_Include.h" compile="0" resource="0"
-              file="Source/dctree_Include.h"/>
-        <FILE id="OaL7DB" name="dctree_Inverter.cpp" compile="1" resource="0"
-              file="Source/dctree_Inverter.cpp"/>
-        <FILE id="AANsmc" name="dctree_Inverter.h" compile="0" resource="0"
-              file="Source/dctree_Inverter.h"/>
-        <FILE id="ZKWPQG" name="dctree_ModSequence.cpp" compile="1" resource="0"
-              file="Source/dctree_ModSequence.cpp"/>
-        <FILE id="szaWbM" name="dctree_ModSequence.h" compile="0" resource="0"
-              file="Source/dctree_ModSequence.h"/>
-        <FILE id="rQyAlh" name="dctree_Node.cpp" compile="1" resource="0" file="Source/dctree_Node.cpp"/>
-        <FILE id="VpTKZo" name="dctree_Node.h" compile="0" resource="0" file="Source/dctree_Node.h"/>
-        <FILE id="AteLsF" name="dctree_PlayNote.cpp" compile="1" resource="0"
-              file="Source/dctree_PlayNote.cpp"/>
-        <FILE id="BBpnWj" name="dctree_PlayNote.h" compile="0" resource="0"
-              file="Source/dctree_PlayNote.h"/>
-        <FILE id="RsHbWC" name="dctree_Repeater.cpp" compile="1" resource="0"
-              file="Source/dctree_Repeater.cpp"/>
-        <FILE id="NVwcJv" name="dctree_Repeater.h" compile="0" resource="0"
-              file="Source/dctree_Repeater.h"/>
-        <FILE id="bXxJYO" name="dctree_RepeatUntil.cpp" compile="1" resource="0"
-              file="Source/dctree_RepeatUntil.cpp"/>
-        <FILE id="CCow6a" name="dctree_RepeatUntil.h" compile="0" resource="0"
-              file="Source/dctree_RepeatUntil.h"/>
-        <FILE id="yPy7b6" name="dctree_Selector.cpp" compile="1" resource="0"
-              file="Source/dctree_Selector.cpp"/>
-        <FILE id="R1Gk87" name="dctree_Selector.h" compile="0" resource="0"
-              file="Source/dctree_Selector.h"/>
-        <FILE id="CACNcS" name="dctree_Sequence.cpp" compile="1" resource="0"
-              file="Source/dctree_Sequence.cpp"/>
-        <FILE id="LtPuZx" name="dctree_Sequence.h" compile="0" resource="0"
-              file="Source/dctree_Sequence.h"/>
-        <FILE id="YJHHCD" name="dctree_StopNote.cpp" compile="1" resource="0"
-              file="Source/dctree_StopNote.cpp"/>
-        <FILE id="ABxYYt" name="dctree_StopNote.h" compile="0" resource="0"
-              file="Source/dctree_StopNote.h"/>
-        <FILE id="DArESf" name="dctree_Succeeder.cpp" compile="1" resource="0"
-              file="Source/dctree_Succeeder.cpp"/>
-        <FILE id="dWuxtJ" name="dctree_Succeeder.h" compile="0" resource="0"
-              file="Source/dctree_Succeeder.h"/>
       </GROUP>
       <GROUP id="{2D3ED483-6C9F-DDBE-620E-9F317720A1D8}" name="DCTreeEditor">
         <FILE id="OxeVKv" name="dctree_Editor.cpp" compile="1" resource="0"

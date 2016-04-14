@@ -53,6 +53,14 @@ namespace DCTree
 		{ ConcreteNodeType::INVALID, "<INVALID>" }
 	};
 
+	SerializableNode::SerializableNode(): NodeType(ConcreteNodeType::INVALID), MaxChildren(0), x(0), y(0)
+	{
+	}
+
+	SerializableNode::SerializableNode(ConcreteNodeType nodeType) : NodeType(nodeType), MaxChildren(0), x(0), y(0)
+	{
+	}
+
 	json SerializableNode::ToJson() const
 	{
 		json jsonObj;
@@ -140,62 +148,6 @@ namespace DCTree
 		}
 	}
 
-	SerializableNode::SerializableNode(ConcreteNodeType nodeType) : NodeType(nodeType), x(0), y(0)
-	{
-		switch (nodeType)
-		{
-		case ConcreteNodeType::ROOT: 
-			MaxChildren = 1;
-			break;
-		case ConcreteNodeType::Charger: 
-			MaxChildren = 1;
-		{
-			SerializableNodeParam numCharges;
-			numCharges.Name = "NumCharges"
-		}
-			break;
-		case ConcreteNodeType::FiniteRepeater: break;
-		case ConcreteNodeType::Inverter: break;
-		case ConcreteNodeType::ModSequence: break;
-		case ConcreteNodeType::PlayNote: break;
-		case ConcreteNodeType::Repeater: break;
-		case ConcreteNodeType::RepeatUntil: break;
-		case ConcreteNodeType::Selector: break;
-		case ConcreteNodeType::Sequence: break;
-		case ConcreteNodeType::StopNote: break;
-		case ConcreteNodeType::Succeeder: break;
-		case ConcreteNodeType::COUNT: break;
-		case ConcreteNodeType::INVALID: break;
-		}
-	}
-
-	std::string SerializableNode::Serialize(const std::vector<SerializableNode>& sNodes, bool prettyPrint)
-	{
-		json jsonObj;
-
-		for (size_t i = 0; i < sNodes.size(); ++i)
-		{
-			jsonObj.push_back(sNodes[i].ToJson());
-		}
-
-		return prettyPrint ? jsonObj.dump(4) : jsonObj.dump();
-	}
-
-	std::vector<SerializableNode> SerializableNode::Deserialize(const std::string& jsonString)
-	{
-		auto jsonObj = json::parse(jsonString);
-		std::vector<SerializableNode> sNodes;
-
-		for (size_t i = 0; i < jsonObj.size(); ++i)
-		{
-			SerializableNode sNode;
-			sNode.FromJson(jsonObj[i]);
-			sNodes.push_back(sNode);
-		}
-
-		return sNodes;
-	}
-
 	std::string SerializableNode::GetDisplayName() const
 	{
 		return _displayNames.at(NodeType);
@@ -204,5 +156,10 @@ namespace DCTree
 	std::string SerializableNode::GetTypeName() const
 	{
 		return _typeNames.at(NodeType);
+	}
+
+	std::string SerializableNode::GetDisplayName(ConcreteNodeType nodeType)
+	{
+		return _displayNames.at(nodeType);
 	}
 }
