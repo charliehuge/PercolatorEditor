@@ -6,6 +6,25 @@
               companyEmail="info@derelict.computer">
   <MAINGROUP id="GAHYGd" name="Percolate Editor">
     <GROUP id="{B64824D9-DD71-7F66-7B1F-C8FF3F7A7C9C}" name="Source">
+      <GROUP id="{A2A77D6C-9B9A-2EE0-C1EF-8F3F1543CC59}" name="DCCore">
+        <FILE id="iSjNtf" name="MusicMathUtil.cpp" compile="1" resource="0"
+              file="Source/MusicMathUtil.cpp"/>
+        <FILE id="TuAtyI" name="MusicMathUtil.h" compile="0" resource="0" file="Source/MusicMathUtil.h"/>
+      </GROUP>
+      <GROUP id="{65EE8BED-56F9-7AD6-667A-BBBCC1C88E8C}" name="Instruments">
+        <FILE id="pawMNP" name="ADSR.cpp" compile="1" resource="0" file="Source/ADSR.cpp"/>
+        <FILE id="bK9lbc" name="ADSR.h" compile="0" resource="0" file="Source/ADSR.h"/>
+        <FILE id="rsyuM1" name="Instrument.cpp" compile="1" resource="0" file="Source/Instrument.cpp"/>
+        <FILE id="PwkbHy" name="Instrument.h" compile="0" resource="0" file="Source/Instrument.h"/>
+        <FILE id="j2HCfP" name="LPFFourPole.cpp" compile="1" resource="0" file="Source/LPFFourPole.cpp"/>
+        <FILE id="t5hheP" name="LPFFourPole.h" compile="0" resource="0" file="Source/LPFFourPole.h"/>
+        <FILE id="Xu8KHj" name="SawOsc.cpp" compile="1" resource="0" file="Source/SawOsc.cpp"/>
+        <FILE id="akNu4w" name="SawOsc.h" compile="0" resource="0" file="Source/SawOsc.h"/>
+        <FILE id="hL2yq7" name="Subtractinator.cpp" compile="1" resource="0"
+              file="Source/Subtractinator.cpp"/>
+        <FILE id="OqqO5h" name="Subtractinator.h" compile="0" resource="0"
+              file="Source/Subtractinator.h"/>
+      </GROUP>
       <GROUP id="{4C2D448C-FED8-FDA7-D9B6-8A22BC46AA7F}" name="DCTreeTest">
         <FILE id="DbwN5t" name="dctree_TestRunner.cpp" compile="1" resource="0"
               file="Source/dctree_TestRunner.cpp"/>
@@ -137,6 +156,7 @@
         <MODULEPATH id="juce_audio_devices" path="../JUCE_4.2/JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="../JUCE_4.2/JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../JUCE_4.2/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2015 targetFolder="Builds/VisualStudio2015">
@@ -160,6 +180,7 @@
         <MODULEPATH id="juce_audio_devices" path="../JUCE_4.2/JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="../JUCE_4.2/JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../JUCE_4.2/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../JUCE_4.2/JUCE/modules"/>
       </MODULEPATHS>
     </VS2015>
   </EXPORTFORMATS>
@@ -168,6 +189,7 @@
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
