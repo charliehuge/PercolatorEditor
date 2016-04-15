@@ -17,7 +17,7 @@ namespace DCMusicMathUtil
 
 	enum class ScaleMode { Ionian = 0, Dorian = 2, Phrygian = 4, Lydian = 5, Mixolydian = 7, Aeolian = 9, Locrian = 11 };
 
-	const double C0 = 8.1757989156;
+	const double A440 = 440.0;
 
 	double MidiNoteToFrequency(int midiNote);
 

@@ -16,7 +16,7 @@ namespace DCMusicMathUtil
 {
 	double MidiNoteToFrequency(int midiNote)
 	{
-		return C0 * SemitonesToPitchMultiplier(midiNote);
+		return A440 * SemitonesToPitchMultiplier(midiNote - 69);
 	}
 
 	double ScaleIntervalToFrequency(int interval, int octave, Note rootNote, ScaleMode scaleMode)

@@ -20,15 +20,15 @@ public:
 	explicit TestTimer(double sampleRate): _elapsedTime(0)
 	{
 		_instrument = new DCSynths::Subtractinator(static_cast<int>(sampleRate));
-		_instrument->SetParameter(0, 0);
-		_instrument->SetParameter(1, 0.05);
-		_instrument->SetParameter(2, 0);
-		_instrument->SetParameter(3, 0.8);
-		_instrument->SetParameter(4, 1);
-		_instrument->SetParameter(5, 0.05);
-		_instrument->SetParameter(6, 0.05);
-		_instrument->SetParameter(7, 0.1);
-		_instrument->SetParameter(8, 0.1);
+		_instrument->SetParameter(0, 0.1);
+		_instrument->SetParameter(1, 0.1);
+		_instrument->SetParameter(2, 0.1);
+		_instrument->SetParameter(3, 0.7);
+		_instrument->SetParameter(4, 0.5);
+		_instrument->SetParameter(5, 0.1);
+		_instrument->SetParameter(6, 0.1);
+		_instrument->SetParameter(7, 0.2);
+		_instrument->SetParameter(8, 0.2);
 	}
 
 	~TestTimer() {}
