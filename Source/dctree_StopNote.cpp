@@ -12,12 +12,13 @@
 
 namespace DCTree
 {
-	StopNote::StopNote(int note) : _note(note)
+	StopNote::StopNote(int note, DCSynths::Instrument *instrument) : _note(note), _instrument(instrument)
 	{
 	}
 
 	Result StopNote::OnTick(double tickTime)
 	{
+		_instrument->ReleaseNote(_note, 0);
 		return Result::Success;
 	}
 }

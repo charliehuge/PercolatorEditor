@@ -10,11 +10,6 @@
 
 #include "dctree_SerializableNode.h"
 
-#define DCT_JSON_NODETYPE "node_type"
-#define DCT_JSON_PARAMS "params"
-#define DCT_JSON_CHILDREN "children"
-#define DCT_JSON_EDITORPOS "editor_pos"
-
 namespace DCTree
 {
 	const std::map<ConcreteNodeType, std::string> SerializableNode::_displayNames =
@@ -143,6 +138,17 @@ namespace DCTree
 					p.StringValue = it.value().get<std::string>();
 				}
 
+				for (size_t pIdx = 0; pIdx < Params.size(); ++pIdx)
+				{
+					if (Params[pIdx].Name.compare(p.Name) == 0)
+					{
+						Params[pIdx].IntValue = p.IntValue;
+						Params[pIdx].DoubleValue = p.DoubleValue;
+						Params[pIdx].StringValue = p.StringValue;
+						return;
+					}
+				}
+
 				Params.push_back(p);
 			}
 		}
@@ -161,5 +167,21 @@ namespace DCTree
 	std::string SerializableNode::GetDisplayName(ConcreteNodeType nodeType)
 	{
 		return _displayNames.at(nodeType);
+	}
+
+	ConcreteNodeType SerializableNode::GetNodeTypeFromName(const std::string& typeName)
+	{
+		// find the type
+		{
+			for (auto it = _typeNames.begin(); it != _typeNames.end(); ++it)
+			{
+				if (it->second.compare(typeName) == 0)
+				{
+					return it->first;
+				}
+			}
+		}
+
+		return ConcreteNodeType::INVALID;
 	}
 }

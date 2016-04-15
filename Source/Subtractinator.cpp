@@ -50,6 +50,7 @@ namespace DCSynths
 		if (_currentNote.State == NoteState::Deactivated)
 		{
 			_currentNote = noteInfo;
+			SetFrequency(DCMusicMathUtil::MidiNoteToFrequency(noteInfo.NoteNumber));
 		}
 		else
 		{
@@ -73,8 +74,6 @@ namespace DCSynths
 			switch (idx)
 			{
 			case p_Detune:
-				if (_currentNote.State == NoteState::On)
-					SetFrequency(DCMusicMathUtil::MidiNoteToFrequency(_currentNote.NoteNumber));
 				break;
 			case p_Slide:
 				break;
@@ -109,7 +108,7 @@ namespace DCSynths
 
 		// if we're waiting to play, advance to the sample we're waiting for
 		// if that's beyond this buffer, return early
-		if (_currentNote.State == NoteState::On && _currentNote.DelaySamples > 0)
+		if (_currentNote.State == NoteState::On && _currentNote.DelaySamples >= 0)
 		{
 			sIdx = _currentNote.DelaySamples;
 			_currentNote.DelaySamples -= numSamples;
@@ -165,7 +164,7 @@ namespace DCSynths
 			else
 			{
 				// if we have no more notes queued up, return early
-				if (_currentNote.State == NoteState::Off && _nextNote.State == NoteState::Deactivated)
+				if (_nextNote.State == NoteState::Deactivated)
 				{
 					_filter.Init();
 					_currentNote.State = NoteState::Deactivated;

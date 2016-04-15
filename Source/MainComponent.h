@@ -12,12 +12,24 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "dctree_MainEditor.h"
 #include "dctree_TestRunner.h"
+#include "Subtractinator.h"
 
 class TestTimer : public HighResolutionTimer
 {
 public:
-	TestTimer(): _elapsedTime(0)
-	{}
+	explicit TestTimer(double sampleRate): _elapsedTime(0)
+	{
+		_instrument = new DCSynths::Subtractinator(static_cast<int>(sampleRate));
+		_instrument->SetParameter(0, 0);
+		_instrument->SetParameter(1, 0.05);
+		_instrument->SetParameter(2, 0);
+		_instrument->SetParameter(3, 0.8);
+		_instrument->SetParameter(4, 1);
+		_instrument->SetParameter(5, 0.05);
+		_instrument->SetParameter(6, 0.05);
+		_instrument->SetParameter(7, 0.1);
+		_instrument->SetParameter(8, 0.1);
+	}
 
 	~TestTimer() {}
 
@@ -29,7 +41,7 @@ public:
 
 	void Start(const std::string &json)
 	{
-		_testRunner.Init(DCTree::CreateRuntimeTree(json));
+		_testRunner.Init(DCTree::CreateRuntimeTree(json, _instrument));
 		_elapsedTime = 0;
 		startTimer(INTERVAL);
 	}
@@ -37,23 +49,30 @@ public:
 	void Stop()
 	{
 		stopTimer();
+		_instrument->ReleaseNote(0, 0);
+	}
+
+	void ProcessBuffer(float *buffer, int numSamples) const
+	{
+		_instrument->ProcessBuffer(buffer, numSamples);
 	}
 
 private:
-	const int INTERVAL = 500;
+	const int INTERVAL = 125;
 
 	DCTree::TestRunner _testRunner;
 	double _elapsedTime;
+	ScopedPointer<DCSynths::Instrument> _instrument;
 };
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainContentComponent   : public Component, public MenuBarModel
+class MainContentComponent   : public AudioAppComponent, public MenuBarModel
 {
 public:
-    //==============================================================================
+	//==============================================================================
     MainContentComponent();
     ~MainContentComponent();
 
@@ -62,11 +81,14 @@ public:
 	StringArray getMenuBarNames() override;
 	PopupMenu getMenuForIndex(int topLevelMenuIndex, const String& menuName) override;
 	void menuItemSelected(int menuItemID, int topLevelMenuIndex) override;
+	void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;
+	void releaseResources() override;
+	void getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill) override;
 
 private:
 	DCTree::MainEditor _mainEditor;
 	ScopedPointer<MenuBarComponent> _menu;
-	TestTimer _testTimer;
+	ScopedPointer<TestTimer> _testTimer;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)

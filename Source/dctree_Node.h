@@ -12,6 +12,7 @@
 #define DC_TREE_NODE_H_INCLUDED
 
 #include "dctree_SerializableNode.h"
+#include "Instrument.h"
 
 namespace DCTree
 {
@@ -57,6 +58,12 @@ namespace DCTree
 
 	template<class ConcreteNode>
 	Node *CreateRuntimeNode(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children)
+	{
+		return nullptr;
+	}
+
+	template<class ConcreteNode>
+	Node *CreateRuntimeNode(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &children, DCSynths::Instrument *instrument)
 	{
 		return nullptr;
 	}

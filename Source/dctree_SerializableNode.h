@@ -15,6 +15,11 @@
 #include <map>
 #include "json.hpp"
 
+#define DCT_JSON_NODETYPE "node_type"
+#define DCT_JSON_PARAMS "params"
+#define DCT_JSON_CHILDREN "children"
+#define DCT_JSON_EDITORPOS "editor_pos"
+
 using json = nlohmann::json;
 
 namespace DCTree
@@ -71,6 +76,7 @@ namespace DCTree
 		std::string GetTypeName() const;
 
 		static std::string GetDisplayName(ConcreteNodeType nodeType);
+		static ConcreteNodeType GetNodeTypeFromName(const std::string &typeName);
 
 	private:
 		const static std::map<ConcreteNodeType, std::string> _displayNames;

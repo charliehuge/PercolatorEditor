@@ -186,11 +186,11 @@ namespace DCTree
 
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
-			auto nv = _nodeViews[i];
+			sNodes[i].ChildIndexes.clear();
 
-			for (int j = 0; j < nv->GetNumChildren(); ++j)
+			for (int j = 0; j < _nodeViews[i]->GetNumChildren(); ++j)
 			{
-				sNodes[i].ChildIndexes.push_back(_nodeViews.indexOf(nv->GetChild(j)));
+				sNodes[i].ChildIndexes.push_back(_nodeViews.indexOf(_nodeViews[i]->GetChild(j)));
 			}
 		}
 
@@ -210,19 +210,16 @@ namespace DCTree
 
 		for (int i = 0; i < _nodeViews.size(); ++i)
 		{
-			auto nv = _nodeViews[i];
-			auto cis = sNodes[i].ChildIndexes;
-
-			for (size_t j = 0; j < cis.size(); ++j)
+			for (size_t j = 0; j < sNodes[i].ChildIndexes.size(); ++j)
 			{
-				nv->InsertChild(_nodeViews[cis[j]], j);
+				_nodeViews[i]->InsertChild(_nodeViews[sNodes[i].ChildIndexes[j]], j);
 			}
 		}
 	}
 
 	void Editor::addNodeView(ConcreteNodeType nodeType, int x, int y)
 	{
-		auto nv = new NodeView(nodeType, x, y);
+		auto* nv = new NodeView(nodeType, x, y);
 		_nodeViews.add(nv);
 		addAndMakeVisible(nv);
 		nv->addMouseListener(this, true);
@@ -230,7 +227,7 @@ namespace DCTree
 
 	void Editor::addNodeView(const SerializableNode &sNode)
 	{
-		auto nv = new NodeView(sNode);
+		auto* nv = new NodeView(sNode);
 		_nodeViews.add(nv);
 		addAndMakeVisible(nv);
 		nv->addMouseListener(this, true);

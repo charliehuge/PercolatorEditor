@@ -97,6 +97,9 @@ namespace DCTree
 		_constrainer.setMinimumOnscreenAmounts(getHeight(), getWidth(), getHeight(), getWidth());
 		_propertyPanel.setBounds(NODEVIEW_PADDING, NODEVIEW_PARAMS_YOFFSET, getWidth() - NODEVIEW_PADDING * 2, getHeight() - NODEVIEW_PARAMS_YOFFSET - NODEVIEW_PADDING * 2);
 		RefreshConnectorPositions();
+		_serializableNode.x = getX();
+		_serializableNode.y = getY();
+
 	}
 
 	void NodeView::mouseDown(const MouseEvent& e)
@@ -113,6 +116,8 @@ namespace DCTree
 		{
 			_dragger.dragComponent(this, e, &_constrainer);
 			getParentComponent()->repaint();
+			_serializableNode.x = getX();
+			_serializableNode.y = getY();
 		}
 	}
 

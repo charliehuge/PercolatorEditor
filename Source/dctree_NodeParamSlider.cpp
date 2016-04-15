@@ -23,12 +23,14 @@ namespace DCTree
 			{
 				slider.setRange(param->IntMin, param->IntMax, 1);
 			}
+			slider.setValue(param->IntValue);
 			break;
 		case NodeParamType::Double: 
 			if (param->HasRange)
 			{
 				slider.setRange(param->DoubleMin, param->DoubleMax);
 			}
+			slider.setValue(param->DoubleValue);
 			break;
 		case NodeParamType::Result:
 		case NodeParamType::String:

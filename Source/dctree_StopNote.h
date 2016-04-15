@@ -18,12 +18,13 @@ namespace DCTree
 	class StopNote : public Node
 	{
 	public:
-		explicit StopNote(int note);
+		explicit StopNote(int note, DCSynths::Instrument *instrument);
 
 	protected:
 		Result OnTick(double tickTime) override;
 
 		int _note;
+		DCSynths::Instrument *_instrument;
 	};
 
 	template<>
@@ -46,10 +47,10 @@ namespace DCTree
 	}
 
 	template<>
-	inline Node *CreateRuntimeNode<StopNote>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &/*children*/)
+	inline Node *CreateRuntimeNode<StopNote>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &/*children*/, DCSynths::Instrument *instrument)
 	{
 		if (params.size() > 0) 
-			return new StopNote(params[0].IntValue); 
+			return new StopNote(params[0].IntValue, instrument); 
 		else 
 			return nullptr;
 	}

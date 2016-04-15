@@ -22,10 +22,12 @@ MainContentComponent::MainContentComponent()
 	addAndMakeVisible(_mainEditor);
 	addAndMakeVisible(_menu = new MenuBarComponent(this));
 	setSize(800, 600);
+	setAudioChannels(0, 2);
 }
 
 MainContentComponent::~MainContentComponent()
 {
+	shutdownAudio();
 }
 
 void MainContentComponent::paint (Graphics& g)
@@ -85,11 +87,41 @@ void MainContentComponent::menuItemSelected(int menuItemID, int /*topLevelMenuIn
 		_mainEditor.SaveTreeAs();
 		break;
 	case MENUID_RUNTEST:
-		_testTimer.Start(_mainEditor.GetCurrentTabSerialized());
+		_testTimer->Start(_mainEditor.GetCurrentTabSerialized());
 		break;
 	case MENUID_STOPTEST:
-		_testTimer.Stop();
+		_testTimer->Stop();
 		break;
 	}
 }
 
+void MainContentComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
+{
+	if (!_testTimer)
+	{
+		_testTimer = new TestTimer(sampleRate);
+	}
+}
+
+void MainContentComponent::releaseResources()
+{
+}
+
+void MainContentComponent::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
+{
+	bufferToFill.clearActiveBufferRegion();
+
+	for (int cIdx = 0; cIdx < bufferToFill.buffer->getNumChannels(); ++cIdx)
+	{
+		float *const channelData = bufferToFill.buffer->getWritePointer(cIdx, bufferToFill.startSample);
+
+		if (cIdx == 0)
+		{
+			_testTimer->ProcessBuffer(channelData, bufferToFill.numSamples);
+		}
+		else
+		{
+			memcpy(channelData, bufferToFill.buffer->getReadPointer(0), bufferToFill.numSamples * sizeof(float));
+		}
+	}
+}

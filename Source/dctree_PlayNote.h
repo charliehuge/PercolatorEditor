@@ -12,18 +12,20 @@
 #define DCTREE_PLAYNOTE_H_INCLUDED
 
 #include "dctree_Node.h"
+#include "Instrument.h"
 
 namespace DCTree
 {
 	class PlayNote : public Node
 	{
 	public:
-		explicit PlayNote(int note);
+		explicit PlayNote(int note, DCSynths::Instrument *instrument);
 
 	protected:
 		Result OnTick(double tickTime) override;
 
 		int _note;
+		DCSynths::Instrument *_instrument;
 	};
 
 	template<>
@@ -46,10 +48,10 @@ namespace DCTree
 	}
 
 	template<>
-	inline Node *CreateRuntimeNode<PlayNote>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &/*children*/)
+	inline Node *CreateRuntimeNode<PlayNote>(const std::vector<SerializableNodeParam> &params, const std::vector<Node *> &/*children*/, DCSynths::Instrument *instrument)
 	{
 		if (params.size() > 0)
-			return new PlayNote(params[0].IntValue);
+			return new PlayNote(params[0].IntValue, instrument);
 		else
 			return nullptr;
 	}

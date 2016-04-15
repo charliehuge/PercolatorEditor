@@ -13,10 +13,11 @@
 
 #include <string>
 #include "dctree_Node.h"
+#include "Instrument.h"
 
 namespace DCTree
 {
-	Node *CreateRuntimeTree(const std::string &jsonString);
+	Node *CreateRuntimeTree(const std::string &jsonString, DCSynths::Instrument *instrument);
 
 	std::string SerializeTree(const std::vector<SerializableNode> &sNodes, bool prettyPrint = false);
 

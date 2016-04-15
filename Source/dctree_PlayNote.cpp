@@ -13,13 +13,14 @@
 
 namespace DCTree
 {
-	PlayNote::PlayNote(int note) : _note(note)
+	PlayNote::PlayNote(int note, DCSynths::Instrument *instrument) : _note(note), _instrument(instrument)
 	{
 	}
 
 	Result PlayNote::OnTick(double tickTime)
 	{
 		DBG("PlayNote: " << _note << ", " << tickTime);
+		_instrument->PlayNote(_note, 1, 0);
 		return Result::Success;
 	}
 }

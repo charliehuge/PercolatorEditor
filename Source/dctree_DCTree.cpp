@@ -23,15 +23,16 @@
 #include "dctree_StopNote.h"
 #include "dctree_Succeeder.h"
 
+
 namespace DCTree
 {
 	/*
 	Runtime tree creation
 	*/
-	Node* CreateRuntimeTree(int index, const std::vector<SerializableNode>& sNodes);
-	Node* CreateRuntimeNodeWrapper(const SerializableNode& sNode, const std::vector<Node*> &children);
+	Node* CreateRuntimeTree(int index, const std::vector<SerializableNode>& sNodes, DCSynths::Instrument *instrument);
+	Node* CreateRuntimeNodeWrapper(const SerializableNode& sNode, const std::vector<Node*> &children, DCSynths::Instrument *instrument);
 
-	Node* CreateRuntimeTree(const std::string& jsonString)
+	Node* CreateRuntimeTree(const std::string& jsonString, DCSynths::Instrument *instrument)
 	{
 		auto sNodes = DeserializeTree(jsonString);
 
@@ -43,27 +44,27 @@ namespace DCTree
 				if (sNodes[i].ChildIndexes.size() < 1) return nullptr;
 				auto rootChildIdx = sNodes[i].ChildIndexes[0];
 				if (rootChildIdx < 0 || rootChildIdx >= sNodes.size()) return nullptr;
-				return CreateRuntimeTree(rootChildIdx, sNodes);
+				return CreateRuntimeTree(rootChildIdx, sNodes, instrument);
 			}
 		}
 
 		return nullptr;
 	}
 
-	Node* CreateRuntimeTree(int index, const std::vector<SerializableNode>& sNodes)
+	Node* CreateRuntimeTree(int index, const std::vector<SerializableNode>& sNodes, DCSynths::Instrument *instrument)
 	{
 		auto sNode = sNodes[index];
 		std::vector<Node *> children;
 
 		for (size_t i = 0; i < sNode.ChildIndexes.size(); ++i)
 		{
-			children.push_back(CreateRuntimeTree(sNode.ChildIndexes[i], sNodes));
+			children.push_back(CreateRuntimeTree(sNode.ChildIndexes[i], sNodes, instrument));
 		}
 
-		return CreateRuntimeNodeWrapper(sNode, children);
+		return CreateRuntimeNodeWrapper(sNode, children, instrument);
 	}
 
-	Node* CreateRuntimeNodeWrapper(const SerializableNode& sNode, const std::vector<Node*> &children)
+	Node* CreateRuntimeNodeWrapper(const SerializableNode& sNode, const std::vector<Node*> &children, DCSynths::Instrument *instrument)
 	{
 		switch (sNode.NodeType)
 		{
@@ -76,7 +77,7 @@ namespace DCTree
 		case ConcreteNodeType::ModSequence:
 			return CreateRuntimeNode<ModSequence>(sNode.Params, children);
 		case ConcreteNodeType::PlayNote:
-			return CreateRuntimeNode<PlayNote>(sNode.Params, children);
+			return CreateRuntimeNode<PlayNote>(sNode.Params, children, instrument);
 		case ConcreteNodeType::Repeater:
 			return CreateRuntimeNode<Repeater>(sNode.Params, children);
 		case ConcreteNodeType::RepeatUntil:
@@ -86,7 +87,7 @@ namespace DCTree
 		case ConcreteNodeType::Sequence:
 			return CreateRuntimeNode<Sequence>(sNode.Params, children);
 		case ConcreteNodeType::StopNote:
-			return CreateRuntimeNode<StopNote>(sNode.Params, children);
+			return CreateRuntimeNode<StopNote>(sNode.Params, children, instrument);
 		case ConcreteNodeType::Succeeder:
 			return CreateRuntimeNode<Succeeder>(sNode.Params, children);
 		case ConcreteNodeType::COUNT:
@@ -117,7 +118,7 @@ namespace DCTree
 
 		for (size_t i = 0; i < jsonObj.size(); ++i)
 		{
-			SerializableNode sNode(ConcreteNodeType::INVALID);
+			auto sNode = CreateDefaultSerializableNode(SerializableNode::GetNodeTypeFromName(jsonObj[i][DCT_JSON_NODETYPE].get<std::string>()));
 			sNode.FromJson(jsonObj[i]);
 			sNodes.push_back(sNode);
 		}
@@ -152,6 +153,11 @@ namespace DCTree
 		case ConcreteNodeType::Succeeder:
 			return GetDefaultNode<Succeeder>();
 		case ConcreteNodeType::ROOT:
+		{
+			SerializableNode sNode(ConcreteNodeType::ROOT);
+			sNode.MaxChildren = 1;
+			return sNode;
+		}
 		case ConcreteNodeType::COUNT:
 		case ConcreteNodeType::INVALID:
 		default:
