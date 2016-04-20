@@ -352,6 +352,12 @@
     <ClCompile Include="..\..\Source\LPFFourPole.cpp">
       <Filter>Percolate Editor\Source\Instruments</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\OneShot.cpp">
+      <Filter>Percolate Editor\Source\Instruments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Plucky.cpp">
+      <Filter>Percolate Editor\Source\Instruments</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SawOsc.cpp">
       <Filter>Percolate Editor\Source\Instruments</Filter>
     </ClCompile>
@@ -1747,6 +1753,12 @@
       <Filter>Percolate Editor\Source\Instruments</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LPFFourPole.h">
+      <Filter>Percolate Editor\Source\Instruments</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\OneShot.h">
+      <Filter>Percolate Editor\Source\Instruments</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Plucky.h">
       <Filter>Percolate Editor\Source\Instruments</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SawOsc.h">

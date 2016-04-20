@@ -13,12 +13,14 @@
 #include "dctree_MainEditor.h"
 #include "dctree_TestRunner.h"
 #include "Subtractinator.h"
+#include "Plucky.h"
 
 class TestTimer : public HighResolutionTimer
 {
 public:
 	explicit TestTimer(double sampleRate): _elapsedTime(0)
 	{
+		/*
 		_instrument = new DCSynths::Subtractinator(static_cast<int>(sampleRate));
 		_instrument->SetParameter(0, 0.1);
 		_instrument->SetParameter(1, 0.1);
@@ -28,7 +30,8 @@ public:
 		_instrument->SetParameter(5, 0.1);
 		_instrument->SetParameter(6, 0.1);
 		_instrument->SetParameter(7, 0.2);
-		_instrument->SetParameter(8, 0.2);
+		_instrument->SetParameter(8, 0.2);*/
+		_instrument = new DCSynths::Plucky(static_cast<int>(sampleRate));
 	}
 
 	~TestTimer() {}

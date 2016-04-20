@@ -18,6 +18,10 @@
         <FILE id="PwkbHy" name="Instrument.h" compile="0" resource="0" file="Source/Instrument.h"/>
         <FILE id="j2HCfP" name="LPFFourPole.cpp" compile="1" resource="0" file="Source/LPFFourPole.cpp"/>
         <FILE id="t5hheP" name="LPFFourPole.h" compile="0" resource="0" file="Source/LPFFourPole.h"/>
+        <FILE id="YL4BGm" name="OneShot.cpp" compile="1" resource="0" file="Source/OneShot.cpp"/>
+        <FILE id="BCFkI3" name="OneShot.h" compile="0" resource="0" file="Source/OneShot.h"/>
+        <FILE id="ETFxqW" name="Plucky.cpp" compile="1" resource="0" file="Source/Plucky.cpp"/>
+        <FILE id="itO14f" name="Plucky.h" compile="0" resource="0" file="Source/Plucky.h"/>
         <FILE id="Xu8KHj" name="SawOsc.cpp" compile="1" resource="0" file="Source/SawOsc.cpp"/>
         <FILE id="akNu4w" name="SawOsc.h" compile="0" resource="0" file="Source/SawOsc.h"/>
         <FILE id="hL2yq7" name="Subtractinator.cpp" compile="1" resource="0"

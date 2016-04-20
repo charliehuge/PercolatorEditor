@@ -133,6 +133,8 @@
     <ClCompile Include="..\..\Source\ADSR.cpp"/>
     <ClCompile Include="..\..\Source\Instrument.cpp"/>
     <ClCompile Include="..\..\Source\LPFFourPole.cpp"/>
+    <ClCompile Include="..\..\Source\OneShot.cpp"/>
+    <ClCompile Include="..\..\Source\Plucky.cpp"/>
     <ClCompile Include="..\..\Source\SawOsc.cpp"/>
     <ClCompile Include="..\..\Source\Subtractinator.cpp"/>
     <ClCompile Include="..\..\Source\dctree_TestRunner.cpp"/>
@@ -1357,6 +1359,8 @@
     <ClInclude Include="..\..\Source\ADSR.h"/>
     <ClInclude Include="..\..\Source\Instrument.h"/>
     <ClInclude Include="..\..\Source\LPFFourPole.h"/>
+    <ClInclude Include="..\..\Source\OneShot.h"/>
+    <ClInclude Include="..\..\Source\Plucky.h"/>
     <ClInclude Include="..\..\Source\SawOsc.h"/>
     <ClInclude Include="..\..\Source\Subtractinator.h"/>
     <ClInclude Include="..\..\Source\dctree_TestRunner.h"/>
