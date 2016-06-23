@@ -11,6 +11,7 @@
 #include "Plucky.h"
 #include "MusicMathUtil.h"
 #include <ctime>
+#include <random>
 
 namespace DCSynths
 {

@@ -9,6 +9,7 @@
 */
 
 #include "Instrument.h"
+#include <math.h>
 
 namespace DCSynths
 {
